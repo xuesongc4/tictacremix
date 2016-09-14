@@ -64,3 +64,38 @@ footer {
     height: 100%;
     border: 3px solid black;
 }
+
+body{
+    font-size: 0;
+}
+.gamesquare{
+    display:inline-block ;
+    border: 2px solid black;
+}
+.gamesquare3{
+    height: 150px;
+    width: 150px;
+}
+.gamesquare9{
+    height: 50px;
+    width: 50px;
+}
+.gamesquare20{
+    height: 30px;
+    width: 30px;
+}
+.playerX{
+    margin-top:10%;
+    background: url(images/playerX.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+}
+.playerO{
+    background: url(images/playerO.jpg);
+    background-size:contain ;
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%;
+}

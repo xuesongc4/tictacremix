@@ -1,21 +1,24 @@
 body {
     margin: 0;
-    padding:0;
+    padding: 0;
 }
+
 header {
     height: 15%;
     text-align: center;
     font-size: 300%
 }
+
 footer {
     height: 3vh;
     text-align: center;
     font-size: 80%;
-    position:fixed;
+    position: fixed;
     bottom: 0;
     width: 100%;
     color: black;
 }
+
 #main {
     margin: 0;
     height: 91vh;
@@ -23,9 +26,10 @@ footer {
     background-color: lavender;
     position: relative;
     left: 25%;
-    padding:0;
+    padding: 0;
 }
-#side{
+
+#side {
 
     height: 91vh;
     width: 25vw;
@@ -33,14 +37,30 @@ footer {
     position: absolute;
 
 }
-#game_header{
+
+#game_header {
     font-size: 150%;
     text-align: center;
-    padding:0;
+    padding: 0;
     margin: 0;
+    border: 1px solid black;
 }
-.time{
-    height: 8%;
+
+.score{
+    text-align: center;
+    margin-top:5vh;
+    height:15%;
     width: 100%;
-    background-color: green;
+}
+.Player1_turn, .Player2_turn {
+    margin-top:10vh;
+    height: 15%;
+    width: 100%;
+    border: 3px solid black;
+    text-align: center;
+}
+
+.score_number, .player_turn {
+    height: 100%;
+    border: 3px solid black;
 }

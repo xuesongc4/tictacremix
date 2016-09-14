@@ -16,13 +16,18 @@ footer {
     color: black;
 }
 #main {
-    height: 50vh;
-    width: 50%;
+    margin: 0;
+    height: 91vh;
+    width: 80vw;
     background-color: lavender;
+    position: relative;
+    left: 20%;
 }
-.square{
-    height: 20vh;
-    width: 50vw;
-    background-color: lavender;
 
+#side{
+    margin: 0;
+    height: 91vh;
+    width: 25vw;
+    background-color: pink;
+    position: absolute;
 }

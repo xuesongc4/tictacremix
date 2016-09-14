@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+}
+header {
+    height: 15%;
+    text-align: center;
+    font-size: 300%
+}
+footer {
+    height: 3vh;
+    text-align: center;
+    font-size: 80%;
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+    color: black;
+}
+#main {
+    height: 50vh;
+    width: 50%;
+    background-color: lavender;
+}
+.square{
+    height: 20vh;
+    width: 50vw;
+    background-color: lavender;
+
+}

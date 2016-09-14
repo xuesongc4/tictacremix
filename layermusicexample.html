@@ -1,0 +1,113 @@
+<!doctype html>
+        <html>
+<head>
+    <style>
+        div{
+            height: 80px;
+            color: white;
+            border: 3px solid darkgray;
+            width:80px;
+            margin: 20px;
+            display:inline-block;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        
+
+        var clicks = 0;
+        var increment = true;
+        $(document).ready(click_handler);
+
+        function click_handler(){
+            $('.button').click(music_layering);
+        }
+
+        function music_layering(){
+
+            if(increment == true) {
+                clicks++;
+                if(clicks ==7){
+                    increment = false;
+                }
+            }
+            else{
+                clicks--;
+                if(clicks ==1 ){
+                    increment = true;
+                }
+            }
+            switch(clicks){
+                case 1:
+                    for(var i=0; i<8; i++){
+                        $("#layer"+i).prop('muted', true);
+                    }
+                    $("#layer1").prop('muted', false);
+                    break;
+                case 2:
+                    for(var i=0; i<8; i++){
+                        $("#layer"+i).prop('muted', true);
+                    }
+                    $("#layer2").prop('muted', false);
+                    break;
+                case 3:
+                    for(var i=0; i<8; i++){
+                        $("#layer"+i).prop('muted', true);
+                    }
+                    $("#layer3").prop('muted', false);
+                    break;;
+                case 4:
+                    for(var i=0; i<8; i++){
+                        $("#layer"+i).prop('muted', true);
+                    }
+                    $("#layer4").prop('muted', false);
+                    break;
+                case 5:
+                    for(var i=0; i<8; i++){
+                        $("#layer"+i).prop('muted', true);
+                    }
+                    $("#layer5").prop('muted', false);
+                    break;
+                case 6:
+                    for(var i=0; i<8; i++){
+                        $("#layer"+i).prop('muted', true);
+                    }
+                    $("#layer6").prop('muted', false);
+                    break;
+                case 7:
+                    for(var i=0; i<8; i++){
+                        $("#layer"+i).prop('muted', true);
+                    }
+                    $("#layer7").prop('muted', false);
+                    break;
+
+            }
+        }
+
+
+    </script>
+</head>
+<body style="background-color: black">
+<audio id="layer1" src="music%20layers/layer1.mp3" muted autoplay loop></audio>
+<audio id="layer2" src="music%20layers/layer2.mp3" muted autoplay loop></audio>
+<audio id="layer3" src="music%20layers/layer3.mp3" muted autoplay loop></audio>
+<audio id="layer4" src="music%20layers/layer4.mp3" muted autoplay loop></audio>
+<audio id="layer5" src="music%20layers/layer5.mp3" muted autoplay loop></audio>
+<audio id="layer6" src="music%20layers/layer6.mp3" muted autoplay loop></audio>
+<audio id="layer7" src="music%20layers/layer7.mp3" muted autoplay loop></audio>
+
+<div class="button">1</div>
+<div class="button">2</div>
+<div class="button">3</div>
+<div class="button">4</div>
+<div class="button">5</div>
+<div class="button">6</div>
+<div class="button">7</div>
+
+<canvas id="canvas" width="800" height="350"></canvas>
+
+
+
+</body>
+</html>

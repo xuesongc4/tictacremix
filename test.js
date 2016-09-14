@@ -1,15 +1,15 @@
 var gameState = [];
 var boardSizes = [3,9,20];
 
-// var size = boardSizes[Math.floor(Math.random()*3)];
-// var size = 9;
+var size = boardSizes[Math.floor(Math.random()*3)];
+var size = 9;
 
-// for (var i=0; i<size; i++) {
-// 	gameState[i] = [];
-// 	for (var j=0; j<size; j++) {
-// 		gameState[i][j] = ' ';
-// 	}
-// }
+for (var i=0; i<size; i++) {
+	gameState[i] = [];
+	for (var j=0; j<size; j++) {
+		gameState[i][j] = ' ';
+	}
+}
 
 
 

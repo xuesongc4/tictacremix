@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        body{
+            font-size: 0;
+        }
+        .gamesquare{
+            display:inline-block ;
+            border: 2px solid black;
+        }
+        .gamesquare3{
+            height: 150px;
+            width: 150px;
+        }
+        .gamesquare9{
+            height: 50px;
+            width: 50px;
+        }
+        .gamesquare20{
+            height: 30px;
+            width: 30px;
+        }
+        .player_x{
+            background
+        }
+        .player_o{
+
+        }
+
+    </style>
+    <script>
+        var whos_turn = x;
+
+        function loadsquares() {
+            var gamesize = 9;
+            var $gameboard = $('.gameboard');
+            for (var i = 0; i < gamesize; i++) {
+                var row = $('<div>').addClass('row'+i);
+                $gameboard.append(row);
+                for (var j = 0; j < gamesize; j++) {
+                    var square = $('<div>').addClass('gamesquare', 'player_x', 'player_o').data('column', j).data('row', i);
+                    $('.row'+i).append(square);
+                }
+            }
+            //---------------- making size of squares appropriate vs number of squares
+           if(gamesize == 3){
+               $(".gamesquare").addClass('gamesquare3');
+           }
+            else if(gamesize == 9){
+                $(".gamesquare").addClass('gamesquare9');
+            }
+            else{
+                $(".gamesquare").addClass('gamesquare20');
+            }
+            loadclickhandlers();
+       }
+
+       function loadclickhandlers(){
+           $('.gamesquare').click(function () {
+               var row = $(this).data('row');
+               var column = $(this).data('column');
+               console.log("row :"+row);
+               console.log("column :"+column);
+         })
+       }
+
+    </script>
+</head>
+<body onload="loadsquares()">
+
+    <div class="gameboard"></div>
+
+</body>
+</html>

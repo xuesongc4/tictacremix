@@ -15,7 +15,6 @@ for (var i = 0; i < gameSize; i++) {
     }
 }
 
-
 $(document).ready(closeButton);
 
 function closeButton() {
@@ -25,11 +24,11 @@ function closeButton() {
         var player2_name = "DJ " + $("#player2_name").val();
         $("#DJ1").append(player1_name);
         $("#DJ2").append(player2_name);
-        $(".front_page").hide();
+        $(".front_page").slideToggle(1500);
+        $('.gamesquare').slideToggle(3000);
     });
 
     $(".board_size").click(function () {
-        console.log("clickeeddd");
         gameSize = $(this).text();
         console.log("loaded: " + gameSize);
         loadSquares();
@@ -57,6 +56,7 @@ function loadSquares() {
         $(".gamesquare").addClass('gamesquare20');
     }
     loadclickhandlers();
+    $(".gamesquare").hide();
 }
 
 function loadclickhandlers() {

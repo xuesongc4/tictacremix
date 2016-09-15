@@ -9,7 +9,7 @@ var gameState = [];
 
 var player1_name=null;
 var player2_name=null;
-
+var randomWin=null;
 
 
 $(document).ready(closeButton);
@@ -50,6 +50,15 @@ function closeButton() {
             }
         }
         loadSquares();
+        if(gameSize==3){
+            randomWin=3;
+        }
+        else if(gameSize==9){
+            randomWin=Math.floor(Math.random()*6)+3;
+        }
+        else{
+            randomWin=Math.floor(Math.random()*17)+3;
+        }
     });
 }
 
@@ -97,7 +106,7 @@ function position_tracker() {
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'o';
         $(".Player_turn").text(player2_name+"'s turn!");
-        console.log(checkWin(row, column, 3, 'x'));
+        checkWin(row, column, randomWin, 'x');
     }
     else if (whos_turn == 'o') {
         gameState[row][column] = 'o';
@@ -106,7 +115,7 @@ function position_tracker() {
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'x';
         $(".Player_turn").text(player1_name+"'s turn!");
-        console.log(checkWin(row, column, 3, 'o'));
+        checkWin(row, column, randomWin, 'o');
     }
 }
 

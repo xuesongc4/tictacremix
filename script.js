@@ -5,17 +5,17 @@ var whos_turn = 'x';
 var clicks = 0;
 var increment = true;
 
-var gamesize = 3;
+var gameSize = null;
 
 var gameState = [];
-for (var i = 0; i < gamesize; i++) {
+for (var i = 0; i < gameSize; i++) {
     gameState[i] = [];
-    for (var j = 0; j < gamesize; j++) {
+    for (var j = 0; j < gameSize; j++) {
         gameState[i][j] = ' ';
     }
 }
 
-$(document).ready(loadsquares);
+
 $(document).ready(closeButton);
 
 function closeButton() {
@@ -26,24 +26,31 @@ function closeButton() {
         $("#DJ1").append(player1_name);
         $("#DJ2").append(player2_name);
         $(".front_page").hide();
+    });
 
+    $(".board_size").click(function () {
+        console.log("clickeeddd");
+        gameSize = $(this).text();
+        console.log("loaded: " + gameSize);
+        loadSquares();
     })
+
 }
-function loadsquares() {
+function loadSquares() {
     var $gameboard = $('.gameboard');
-    for (var i = 0; i < gamesize; i++) {
+    for (var i = 0; i < gameSize; i++) {
         var row = $('<div>').addClass('row' + i);
         $gameboard.append(row);
-        for (var j = 0; j < gamesize; j++) {
+        for (var j = 0; j < gameSize; j++) {
             var square = $('<div>').addClass('gamesquare').data('column', j).data('row', i);
             $('.row' + i).append(square);
         }
     }
     //---------------- making size of squares appropriate vs number of squares
-    if (gamesize == 3) {
+    if (gameSize == 3) {
         $(".gamesquare").addClass('gamesquare3');
     }
-    else if (gamesize == 9) {
+    else if (gameSize == 9) {
         $(".gamesquare").addClass('gamesquare9');
     }
     else {

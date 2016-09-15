@@ -144,3 +144,22 @@ footer {
     top: 35%;
     left: 30%;
 }
+#three{
+    top: 5%;
+    left: 80%;
+}
+#nine{
+    top:15%;
+    left:80%
+}
+#twenty{
+    top:25%;
+    left:80%;
+}
+.board_size{
+    position: absolute;
+    border: 5px solid black;
+    height: 60px;
+    width: 60px;
+    background-color: pink;
+}

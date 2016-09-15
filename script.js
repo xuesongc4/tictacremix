@@ -59,6 +59,7 @@ function closeButton() {
         else{
             randomWin=Math.floor(Math.random()*17)+3;
         }
+        $('#toWin').append(randomWin+" need to win.")
     });
 }
 

@@ -2,7 +2,7 @@
  * Created by OF on 9/14/16.
  */
 var whos_turn = 'x';
-var clicks = 0;
+var layers = 0;
 var increment = true;
 
 var gameSize = null;
@@ -87,64 +87,41 @@ function position_tracker() {
         console.log(checkWin(row, column, 3, 'o'));
     }
 }
-function music_layering() {
 
-    if (increment == true) {
-        clicks++;
-        console.log(clicks + "clicks!!!");
-        if (clicks == 7) {
+function music_layering(){
+    if(increment) {
+        layers++;
+        if(layers === 7){
             increment = false;
         }
     }
-    else {
-        clicks--;
-        console.log(clicks + "clicks!!!");
-        if (clicks == 1) {
+    else{
+        layers--;
+        if(layers === 1){
             increment = true;
         }
     }
-    switch (clicks) {
+    $('.music').prop('muted', true);
+    switch(layers){
         case 1:
-            for (var i = 0; i < 8; i++) {
-                $("#layer" + i).prop('muted', true);
-            }
             $("#layer1").prop('muted', false);
             break;
         case 2:
-            for (var i = 0; i < 8; i++) {
-                $("#layer" + i).prop('muted', true);
-            }
             $("#layer2").prop('muted', false);
             break;
         case 3:
-            for (var i = 0; i < 8; i++) {
-                $("#layer" + i).prop('muted', true);
-            }
             $("#layer3").prop('muted', false);
             break;
-            ;
         case 4:
-            for (var i = 0; i < 8; i++) {
-                $("#layer" + i).prop('muted', true);
-            }
             $("#layer4").prop('muted', false);
             break;
         case 5:
-            for (var i = 0; i < 8; i++) {
-                $("#layer" + i).prop('muted', true);
-            }
             $("#layer5").prop('muted', false);
             break;
         case 6:
-            for (var i = 0; i < 8; i++) {
-                $("#layer" + i).prop('muted', true);
-            }
             $("#layer6").prop('muted', false);
             break;
         case 7:
-            for (var i = 0; i < 8; i++) {
-                $("#layer" + i).prop('muted', true);
-            }
             $("#layer7").prop('muted', false);
             break;
     }

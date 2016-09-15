@@ -8,41 +8,51 @@ var increment = true;
 var gamesize = 3;
 
 var gameState = [];
-for (var i=0; i<gamesize; i++) {
+for (var i = 0; i < gamesize; i++) {
     gameState[i] = [];
-    for (var j=0; j<gamesize; j++) {
+    for (var j = 0; j < gamesize; j++) {
         gameState[i][j] = ' ';
     }
 }
 
 $(document).ready(loadsquares);
+$(document).ready(closeButton);
 
+function closeButton() {
+    $(".button").click(function () {
 
+        var player1_name = "DJ " + $("#player1_name").val();
+        var player2_name = "DJ " + $("#player2_name").val();
+        $("#DJ1").append(player1_name);
+        $("#DJ2").append(player2_name);
+        $(".front_page").hide();
 
+    })
+}
 function loadsquares() {
     var $gameboard = $('.gameboard');
     for (var i = 0; i < gamesize; i++) {
-        var row = $('<div>').addClass('row'+i);
+        var row = $('<div>').addClass('row' + i);
         $gameboard.append(row);
         for (var j = 0; j < gamesize; j++) {
             var square = $('<div>').addClass('gamesquare').data('column', j).data('row', i);
-            $('.row'+i).append(square);
+            $('.row' + i).append(square);
         }
     }
     //---------------- making size of squares appropriate vs number of squares
-    if(gamesize == 3){
+    if (gamesize == 3) {
         $(".gamesquare").addClass('gamesquare3');
     }
-    else if(gamesize == 9){
+    else if (gamesize == 9) {
         $(".gamesquare").addClass('gamesquare9');
     }
-    else{
+    else {
         $(".gamesquare").addClass('gamesquare20');
     }
     loadclickhandlers();
 }
 
-function loadclickhandlers(){
+function loadclickhandlers() {
     $('.gamesquare').click(position_tracker);
     $('.gamesquare').click(music_layering);
 }
@@ -60,72 +70,73 @@ function position_tracker() {
         var player1 = $('<div>').addClass('playerX');
         $(this).append(player1);
         whos_turn = 'o';
-        console.log(checkWin(row,column,3,'x'));
+        console.log(checkWin(row, column, 3, 'x'));
     }
     else if (whos_turn == 'o') {
         gameState[row][column] = 'o';
         var player2 = $('<div>').addClass('playerO');
         $(this).append(player2);
         whos_turn = 'x';
-        console.log(checkWin(row,column,3,'o'));
+        console.log(checkWin(row, column, 3, 'o'));
     }
 }
-function music_layering(){
+function music_layering() {
 
-    if(increment == true) {
+    if (increment == true) {
         clicks++;
-        console.log(clicks+"clicks!!!");
-        if(clicks ==7){
+        console.log(clicks + "clicks!!!");
+        if (clicks == 7) {
             increment = false;
         }
     }
-    else{
+    else {
         clicks--;
-        console.log(clicks+"clicks!!!");
-        if(clicks ==1 ){
+        console.log(clicks + "clicks!!!");
+        if (clicks == 1) {
             increment = true;
         }
     }
-    switch(clicks){
+    switch (clicks) {
         case 1:
-            for(var i=0; i<8; i++){
-                $("#layer"+i).prop('muted', true);
+            for (var i = 0; i < 8; i++) {
+                $("#layer" + i).prop('muted', true);
             }
             $("#layer1").prop('muted', false);
             break;
         case 2:
-            for(var i=0; i<8; i++){
-                $("#layer"+i).prop('muted', true);
+            for (var i = 0; i < 8; i++) {
+                $("#layer" + i).prop('muted', true);
             }
             $("#layer2").prop('muted', false);
             break;
         case 3:
-            for(var i=0; i<8; i++){
-                $("#layer"+i).prop('muted', true);
+            for (var i = 0; i < 8; i++) {
+                $("#layer" + i).prop('muted', true);
             }
             $("#layer3").prop('muted', false);
-            break;;
+            break;
+            ;
         case 4:
-            for(var i=0; i<8; i++){
-                $("#layer"+i).prop('muted', true);
+            for (var i = 0; i < 8; i++) {
+                $("#layer" + i).prop('muted', true);
             }
             $("#layer4").prop('muted', false);
             break;
         case 5:
-            for(var i=0; i<8; i++){
-                $("#layer"+i).prop('muted', true);
+            for (var i = 0; i < 8; i++) {
+                $("#layer" + i).prop('muted', true);
             }
             $("#layer5").prop('muted', false);
             break;
         case 6:
-            for(var i=0; i<8; i++){
-                $("#layer"+i).prop('muted', true);
+            for (var i = 0; i < 8; i++) {
+                $("#layer" + i).prop('muted', true);
             }
             $("#layer6").prop('muted', false);
             break;
         case 7:
-            for(var i=0; i<8; i++){
-                $("#layer"+i).prop('muted', true);
+            for (var i = 0; i < 8; i++) {
+                $("#layer" + i).prop('muted', true);
             }
             $("#layer7").prop('muted', false);
             break;
@@ -134,19 +145,19 @@ function music_layering(){
 
 
 //Win Condition functions
-function checkWin(i,j,numberOfSpots,XorO) {
-    if (checkVertical(i,j,numberOfSpots,XorO) || checkUpperDiagonal(i,j,numberOfSpots,XorO) || checkHorizontal(i,j,numberOfSpots,XorO) || checkLowerDiagonal(i,j,numberOfSpots,XorO)) {
+function checkWin(i, j, numberOfSpots, XorO) {
+    if (checkVertical(i, j, numberOfSpots, XorO) || checkUpperDiagonal(i, j, numberOfSpots, XorO) || checkHorizontal(i, j, numberOfSpots, XorO) || checkLowerDiagonal(i, j, numberOfSpots, XorO)) {
         return true;
     }
     return false;
 }
 
 
-function checkVertical(i,j,numberOfSpots,XorO) {
+function checkVertical(i, j, numberOfSpots, XorO) {
     var count = 1;
     var step = 1;
-    while(gameState[i-step]) {
-        if (gameState[i-step][j] === XorO) {
+    while (gameState[i - step]) {
+        if (gameState[i - step][j] === XorO) {
             count++;
             step++;
         } else {
@@ -154,8 +165,8 @@ function checkVertical(i,j,numberOfSpots,XorO) {
         }
     }
     step = 1;
-    while(gameState[i+step]) {
-        if (gameState[i+step][j] === XorO) {
+    while (gameState[i + step]) {
+        if (gameState[i + step][j] === XorO) {
             count++;
             step++;
         } else {
@@ -165,11 +176,11 @@ function checkVertical(i,j,numberOfSpots,XorO) {
     return count === numberOfSpots;
 }
 
-function checkUpperDiagonal(i,j,numberOfSpots,XorO) {
+function checkUpperDiagonal(i, j, numberOfSpots, XorO) {
     var count = 1;
     var step = 1;
-    while(gameState[i+step]) {
-        if (gameState[i+step][j-step] === XorO) {
+    while (gameState[i + step]) {
+        if (gameState[i + step][j - step] === XorO) {
             count++;
             step++;
         } else {
@@ -177,8 +188,8 @@ function checkUpperDiagonal(i,j,numberOfSpots,XorO) {
         }
     }
     step = 1;
-    while(gameState[i-step]) {
-        if (gameState[i-step][j+step] === XorO) {
+    while (gameState[i - step]) {
+        if (gameState[i - step][j + step] === XorO) {
             count++;
             step++;
         } else {
@@ -188,11 +199,11 @@ function checkUpperDiagonal(i,j,numberOfSpots,XorO) {
     return count === numberOfSpots;
 }
 
-function checkHorizontal(i,j,numberOfSpots,XorO) {
+function checkHorizontal(i, j, numberOfSpots, XorO) {
     var count = 1;
     var step = 1;
-    while(gameState[i][j-step]) {
-        if (gameState[i][j-step] === XorO) {
+    while (gameState[i][j - step]) {
+        if (gameState[i][j - step] === XorO) {
             count++;
             step++;
         } else {
@@ -200,8 +211,8 @@ function checkHorizontal(i,j,numberOfSpots,XorO) {
         }
     }
     step = 1;
-    while(gameState[i][j+step]) {
-        if (gameState[i][j+step] === XorO) {
+    while (gameState[i][j + step]) {
+        if (gameState[i][j + step] === XorO) {
             count++;
             step++;
         } else {
@@ -211,11 +222,11 @@ function checkHorizontal(i,j,numberOfSpots,XorO) {
     return count === numberOfSpots;
 }
 
-function checkLowerDiagonal(i,j,numberOfSpots,XorO) {
+function checkLowerDiagonal(i, j, numberOfSpots, XorO) {
     var count = 1;
     var step = 1;
-    while(gameState[i-step]) {
-        if (gameState[i-step][j-step] === XorO) {
+    while (gameState[i - step]) {
+        if (gameState[i - step][j - step] === XorO) {
             count++;
             step++;
         } else {
@@ -224,8 +235,8 @@ function checkLowerDiagonal(i,j,numberOfSpots,XorO) {
         }
     }
     step = 1;
-    while(gameState[i+step]) {
-        if (gameState[i+step][j+step] === XorO) {
+    while (gameState[i + step]) {
+        if (gameState[i + step][j + step] === XorO) {
             count++;
             step++;
         } else {

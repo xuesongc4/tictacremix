@@ -30,7 +30,7 @@ function closeButton() {
     $(".button").click(function () {
         player1_name = "DJ " + $("#player1_name").val();
         player2_name = "DJ " + $("#player2_name").val();
-        loadAudioFx()
+        loadAudioFx();
         $("#DJ1").append(player1_name);
         $(".Player_turn").text(player1_name+"'s turn!");
         $("#DJ2").append(player2_name);
@@ -39,7 +39,9 @@ function closeButton() {
     });
 
     $(".board_size").click(function () {
-        audioClick()
+        audioClick();
+        $(".gameboard").html("");
+        $("#toWin").html("");
         gameSize = +$(this).data('size');
         $(this).addClass('buttonClicked');
         var clicked = $(this).addClass();

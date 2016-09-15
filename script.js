@@ -32,9 +32,55 @@ function closeButton() {
             }
         }
         loadSquares();
+
     });
 
+    $('.clickApi').click(function () {
+        console.log("CLIcKEd");
+        $.ajax({
+            // url: 'http://www.opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple',
+            url: 'http://brianphan88.com/questions/multiple_api.php',
+            // dataType: 'jsonp',
+            // method: 'get',
+            // crossDomain: true,
+            success: function (response) {
+                console.log("response: ", JSON.parse(response.substring(0, response.length - 1)));
+                // console.log(JSON.parse(response));
+                response = JSON.parse(response.substring(0, response.length - 1));
+                var i = Math.floor(Math.random() * 40);
+                var question = response.results[i].question;
+                console.log(question);
+                $(".questions").html(" ");
+                $(".questions").append(question);
+                var wrong_answer = response.results[i].incorrect_answers;
+                var answer = response.results[i].correct_answer;
+                $(".button_option").html(" ");
+                $("#button_option1").append(response.results[i].incorrect_answers[0]);
+                $("#button_option2").append(response.results[i].incorrect_answers[1]);
+                $("#button_option3").append(response.results[i].incorrect_answers[2]);
+                $("#button_option4").append(response.results[i].correct_answer);
+                console.log(wrong_answer);
+                console.log(answer);
+
+            },
+            error: function (response) {
+                console.log("ERROR: ", arguments);
+            }
+
+        })
+    });
+    $(".button_option").click(function () {
+        var answer = $(this).text();
+        if (answer) {
+            console.log("corret answer");
+            // $("question_board").hide();
+        } else {
+            console.log("incorrect answer");
+        }
+    })
 }
+
+
 function loadSquares() {
     var $gameboard = $('.gameboard');
     for (var i = 0; i < gameSize; i++) {
@@ -88,21 +134,21 @@ function position_tracker() {
     }
 }
 
-function music_layering(){
-    if(increment) {
+function music_layering() {
+    if (increment) {
         layers++;
-        if(layers === 7){
+        if (layers === 7) {
             increment = false;
         }
     }
-    else{
+    else {
         layers--;
-        if(layers === 1){
+        if (layers === 1) {
             increment = true;
         }
     }
     $('.music').prop('muted', true);
-    switch(layers){
+    switch (layers) {
         case 1:
             $("#layer1").prop('muted', false);
             break;

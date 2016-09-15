@@ -12,8 +12,8 @@ body {
     margin: 0;
     height: 100vh;
     width: 85%;
-    display:inline-block;
-    float:right;
+    display: inline-block;
+    float: right;
     background-image: url("images/background2.jpg");
     background-size: cover;
     z-index: -2;
@@ -26,18 +26,18 @@ body {
     height: 100vh;
     width: 15%;
     background-image: url(images/background3.jpg);
-    background-size:contain;
-    display:inline-block;
+    background-size: contain;
+    display: inline-block;
 
 }
 
-.sidebar_style{
+.sidebar_style {
     font-size: 15px;
     text-align: center;
     padding: 0;
     margin: 0;
     border: 3px solid white;
-    border-radius:10px;
+    border-radius: 10px;
     background-color: #6a6969;
 }
 
@@ -64,8 +64,8 @@ body {
 
 .gamesquare {
     display: inline-block;
-    margin:1px;
-    background-color: rgba(102,0,0,.5);
+    margin: 1px;
+    background-color: rgba(102, 0, 0, .5);
 
 }
 
@@ -109,7 +109,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-image: url(images/background1.gif);
-    background-size:cover ;
+    background-size: cover;
     z-index: 10;
 }
 
@@ -117,46 +117,47 @@ body {
     line-height: 100px;
     text-align: center;
     font-weight: bolder;
-    bottom:10%;
+    bottom: 10%;
     right: 7%;
     height: 250px;
     width: 250px;
-    position:absolute;
+    position: absolute;
     font-size: 20px;
-    color:whitesmoke;
+    color: whitesmoke;
     font-style: italic;
-    border: 65px rgb(20,20,20) solid;
+    border: 65px rgb(20, 20, 20) solid;
     border-radius: 100%;
-    background-color:white;
+    background-color: white;
     background-image: url(images/buttonBackground.jpg);
-    background-size:contain;
+    background-size: contain;
     transition-duration: 1s;
 }
 
-.button:hover{
+.button:hover {
     transform: rotate(10800deg);
     transition-duration: 20s;
     cursor: pointer;
 }
 
 .input_name {
-    padding:0;
-    padding-top:115px;
-    padding-left:80px;
-    color:orangered;
+    padding: 0;
+    padding-top: 115px;
+    padding-left: 80px;
+    color: orangered;
     font-weight: bolder;
     font-style: italic;
-    font-size:25px;
+    font-size: 25px;
     position: absolute;
     height: 200px;
     width: 350px;
-    background-color: rgba(255,255,255, 0);
+    background-color: rgba(255, 255, 255, 0);
     background-image: url(images/backstagepass.png);
     background-size: cover;
     border: none;
     transform: rotate(-20deg);
     transition-duration: 300ms;
 }
+
 .input_name:hover {
     z-index: 10;
     transform: rotate(5deg);
@@ -175,32 +176,37 @@ body {
     top: -5%;
     left: 20%;
 }
-#three{
+
+#three {
     top: 5%;
     right: 5%;
 }
-#nine{
-    top:18%;
-    right:5%
+
+#nine {
+    top: 18%;
+    right: 5%
 }
-#twenty{
-    top:30%;
-    right:5%;
+
+#twenty {
+    top: 30%;
+    right: 5%;
 }
-.board_size{
-    line-height:60px;
+
+.board_size {
+    line-height: 60px;
     text-align: center;
     font-size: 30px;
     position: absolute;
     height: 60px;
     width: 300px;
     color: orangered;
-    font-weight:bolder;
-    font-style:italic;
-    background-color: rgba(255,255,255,.7);
+    font-weight: bolder;
+    font-style: italic;
+    background-color: rgba(255, 255, 255, .7);
     border-radius: 30px;
     transition-duration: .5s;
 }
+
 #three:hover {
     margin-right: 50px;
     border: 3px orangered solid;
@@ -208,12 +214,14 @@ body {
     cursor: pointer;
 
 }
+
 #nine:hover {
     margin-right: 50px;
     border: 3px orangered solid;
     box-sizing: border-box;
     cursor: pointer;
 }
+
 #twenty:hover {
     margin-right: 50px;
     border: 3px orangered solid;
@@ -221,18 +229,97 @@ body {
     cursor: pointer;
 }
 
-.gameboard{
+.gameboard {
     position: absolute;
     right: 6%;
-    top:10%;
+    top: 10%;
     z-index: 2;
 }
-#canvas{
+
+#canvas {
     position: absolute;
-    bottom:0;
-    right:0;
+    bottom: 0;
+    right: 0;
 }
-.sidebar_column{
-    width:48%;
-    display:inline-block;
+
+.sidebar_column {
+    width: 48%;
+    display: inline-block;
+}
+
+.question_board {
+    font-size: 10px;
+    top: 5%;
+    left: 18%;
+    position: absolute;
+    height: 35vh;
+    width: 25vw;
+    background-color: pink;
+    background-size: cover;
+    opacity: 0.5;
+    border-radius: 25px;
+}
+
+.clickApi {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 2%;
+    left: 35%;
+    background-color: red;
+    z-index: 1;
+}
+
+.questions {
+    font-size: 10px;
+    position: absolute;
+    height: 60%;
+    width: 100%;
+    background-color: green;
+    background-size: cover;
+    opacity: 0.5;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.button_options {
+    height: 40%;
+    width: 100%;
+    background-color: green;
+    top: 60%;
+    position: absolute;
+    border-radius: 0px 0px 25px 25px;
+}
+
+#button_option1 {
+    height: 50%;
+    width: 50%;
+    background-color: yellow;
+    position: absolute;
+}
+
+#button_option2 {
+    height: 50%;
+    width: 50%;
+    background-color: red;
+    left: 50%;
+    position: absolute;
+}
+
+#button_option3 {
+    height: 50%;
+    width: 50%;
+    background-color: blue;
+    top: 50%;
+    left:50%;
+    position: absolute;
+    border-radius: 0px 0px 25px 0px;
+}
+
+#button_option4 {
+    height: 50%;
+    width: 50%;
+    background-color: red;
+    top: 50%;
+    position: absolute;
+    border-radius: 0px 0px 0px 25px;
 }

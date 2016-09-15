@@ -32,13 +32,19 @@ body {
 }
 
 .sidebar_style{
-    font-size: 15px;
     text-align: center;
     padding: 0;
-    margin: 0;
-    border: 3px solid white;
     border-radius:10px;
-    background-color: #6a6969;
+    height: 10%;
+    width: 50%;
+    margin:auto;
+    margin-top: 30px;
+    border: 5px solid red;
+    color:white;
+    font-weight: bolder;
+    font-style: italic;
+    font-size:25px;
+    background-color: rgba(50,50,50,.95);
 }
 
 .score {
@@ -49,12 +55,16 @@ body {
 }
 
 #DJ1, #DJ2 {
-    margin-top: 10vh;
-    height: 15%;
-    width: 48%;
-    border: 3px solid black;
+    height: 10%;
+    width: 50%;
     text-align: center;
-    display: inline-block
+    margin:auto;
+    margin-top: 30px;
+    color:white;
+    font-weight: bolder;
+    font-style: italic;
+    font-size:25px;
+
 }
 
 .score_number, .player_turn {
@@ -64,41 +74,41 @@ body {
 
 .gamesquare {
     display: inline-block;
-    margin:1px;
-    background-color: rgba(102,0,0,.5);
-
+    margin:2px;
+    background-color: rgba(50,50,50,.5);
 }
-
 .gamesquare3 {
-    height: 150px;
-    width: 150px;
+    height: 175px;
+    width: 175px;
 }
 
 .gamesquare9 {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 
 .gamesquare20 {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
 }
 
 .playerX {
-    margin-top: 10%;
     background: url(images/playerX.png);
     background-size: contain;
     background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+    height: 90%;
+    width: 90%;
+    margin:auto;
+    margin-top: 5%;
 }
 
 .playerO {
     background: url(images/playerO.png);
     background-size: contain;
     background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
+    height: 90%;
+    width: 90%;
+    margin: auto;
 }
 
 .front_page {
@@ -118,16 +128,15 @@ body {
     text-align: center;
     font-weight: bolder;
     bottom:10%;
-    right: 7%;
+    right: 5%;
     height: 250px;
     width: 250px;
     position:absolute;
     font-size: 20px;
-    color:whitesmoke;
+    color:white;
     font-style: italic;
     border: 65px rgb(20,20,20) solid;
     border-radius: 100%;
-    background-color:white;
     background-image: url(images/buttonBackground.jpg);
     background-size:contain;
     transition-duration: 1s;
@@ -176,16 +185,16 @@ body {
     left: 20%;
 }
 #three{
-    top: 5%;
-    right: 5%;
+    top: 4%;
+    right: 13%;
 }
 #nine{
-    top:18%;
-    right:5%
+    top:17%;
+    right:7%
 }
 #twenty{
     top:30%;
-    right:5%;
+    right:2%;
 }
 .board_size{
     line-height:60px;
@@ -197,33 +206,28 @@ body {
     color: orangered;
     font-weight:bolder;
     font-style:italic;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(255,255,255,.6);
     border-radius: 30px;
     transition-duration: .5s;
+    border: 3px orangered solid;
+    box-sizing: border-box;
 }
 #three:hover {
-    margin-right: 50px;
-    border: 3px orangered solid;
-    box-sizing: border-box;
     cursor: pointer;
-
+    background:white;
 }
 #nine:hover {
-    margin-right: 50px;
-    border: 3px orangered solid;
-    box-sizing: border-box;
     cursor: pointer;
+    background:white;
 }
 #twenty:hover {
-    margin-right: 50px;
-    border: 3px orangered solid;
-    box-sizing: border-box;
     cursor: pointer;
+    background:white;
 }
 
 .gameboard{
     position: absolute;
-    right: 6%;
+    right:10%;
     top:10%;
     z-index: 2;
 }
@@ -235,4 +239,65 @@ body {
 .sidebar_column{
     width:48%;
     display:inline-block;
+}
+#title{
+    font-style: italic;
+    text-decoration:underline;
+    color:orangered;
+    font-weight: bolder;
+    position: absolute;
+    bottom: 9%;
+    transform: rotate(10deg);
+    background-color: rgba(0,0,0,.9);
+}
+#title h1{
+    font-size: 75px;
+}
+
+.buttonClicked{
+    background-color: white;
+    border-color: red;
+    color:red;
+    border-width: 5px;
+    margin-right: 50px;
+}
+.winner{
+    height:700px;
+    width:700px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    color:white;
+    font-size: 80px;
+    font-weight:bolder;
+    font-style:italic;
+    border: 200px rgb(20,20,20) solid;
+    border-radius: 100%;
+    background-image: url(images/buttonBackground.jpg);
+    background-size:contain;
+    text-align: center;
+    padding-top: 25px;
+    z-index: 5;
+    display: none;
+}
+.reset{
+    border:3px solid white;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color:rgba(255,255,255,.3)
+}
+.reset:hover{
+    cursor:pointer;
+    background-color:rgba(255,255,255,.7)
+}
+
+h1{
+    text-align: center;
+    color:red;
+    font-weight: bolder;
+    font-style: italic;
+    font-size:50px;
+}
+#resetGame:hover{
+    cursor:pointer;
 }

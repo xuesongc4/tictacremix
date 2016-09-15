@@ -4,27 +4,45 @@
 var whos_turn = 'x';
 var layers = 0;
 var increment = true;
-
 var gameSize = null;
-
 var gameState = [];
+
+var player1_name=null;
+var player2_name=null;
+
 
 
 $(document).ready(closeButton);
 
-function closeButton() {
-    $(".button").click(function () {
+function resetGame(){
+    location.reload();
+}
 
-        var player1_name = "DJ " + $("#player1_name").val();
-        var player2_name = "DJ " + $("#player2_name").val();
+function audioClick(){
+    $('#fx1').get(0).play();
+}
+function loadAudioFx(){
+    $('#fx2').get(0).play();
+}
+
+function closeButton() {
+
+    $(".button").click(function () {
+        player1_name = "DJ " + $("#player1_name").val();
+        player2_name = "DJ " + $("#player2_name").val();
+        loadAudioFx()
         $("#DJ1").append(player1_name);
+        $(".Player_turn").text(player1_name+"'s turn!");
         $("#DJ2").append(player2_name);
         $(".front_page").slideToggle(1500);
-        $('.gamesquare').slideToggle(3000);
+        $('.gamesquare').slideToggle(2000);
     });
 
     $(".board_size").click(function () {
+        audioClick()
         gameSize = +$(this).data('size');
+        $(this).addClass('buttonClicked');
+        var clicked = $(this).addClass();
         for (var i = 0; i < gameSize; i++) {
             gameState[i] = [];
             for (var j = 0; j < gameSize; j++) {
@@ -33,8 +51,8 @@ function closeButton() {
         }
         loadSquares();
     });
-
 }
+
 function loadSquares() {
     var $gameboard = $('.gameboard');
     for (var i = 0; i < gameSize; i++) {
@@ -65,9 +83,9 @@ function loadclickhandlers() {
 }
 
 function position_tracker() {
+    audioClick();
     var row = $(this).data('row');
     var column = $(this).data('column');
-
 
     console.log("row :" + row);
     console.log("column :" + column);
@@ -76,14 +94,18 @@ function position_tracker() {
         gameState[row][column] = 'x';
         var player1 = $('<div>').addClass('playerX');
         $(this).append(player1);
+        $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'o';
+        $(".Player_turn").text(player2_name+"'s turn!");
         console.log(checkWin(row, column, 3, 'x'));
     }
     else if (whos_turn == 'o') {
         gameState[row][column] = 'o';
         var player2 = $('<div>').addClass('playerO');
         $(this).append(player2);
+        $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'x';
+        $(".Player_turn").text(player1_name+"'s turn!");
         console.log(checkWin(row, column, 3, 'o'));
     }
 }
@@ -131,6 +153,8 @@ function music_layering(){
 //Win Condition functions
 function checkWin(i, j, numberOfSpots, XorO) {
     if (checkVertical(i, j, numberOfSpots, XorO) || checkUpperDiagonal(i, j, numberOfSpots, XorO) || checkHorizontal(i, j, numberOfSpots, XorO) || checkLowerDiagonal(i, j, numberOfSpots, XorO)) {
+        $('.winner').slideToggle();
+        loadAudioFx();
         return true;
     }
     return false;

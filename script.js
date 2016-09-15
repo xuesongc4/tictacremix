@@ -8,12 +8,7 @@ var increment = true;
 var gameSize = null;
 
 var gameState = [];
-for (var i = 0; i < gameSize; i++) {
-    gameState[i] = [];
-    for (var j = 0; j < gameSize; j++) {
-        gameState[i][j] = ' ';
-    }
-}
+
 
 $(document).ready(closeButton);
 
@@ -30,9 +25,14 @@ function closeButton() {
 
     $(".board_size").click(function () {
         gameSize = +$(this).data('size');
-        console.log("loaded: " + gameSize);
+        for (var i = 0; i < gameSize; i++) {
+            gameState[i] = [];
+            for (var j = 0; j < gameSize; j++) {
+                gameState[i][j] = ' ';
+            }
+        }
         loadSquares();
-    })
+    });
 
 }
 function loadSquares() {

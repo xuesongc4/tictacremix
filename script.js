@@ -29,7 +29,7 @@ function closeButton() {
     });
 
     $(".board_size").click(function () {
-        gameSize = $(this).text();
+        gameSize = +$(this).data('size');
         console.log("loaded: " + gameSize);
         loadSquares();
     })

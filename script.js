@@ -90,12 +90,13 @@ function loadSquares() {
 }
 
 function loadclickhandlers() {
-    $('.gamesquare').click(position_tracker);
-    $('.gamesquare').click(music_layering);
+    $('.gamesquare').on('click',position_tracker);
+    $('.gamesquare').on('click',music_layering);
 }
 
 function position_tracker() {
     audioClick();
+    $(this).off('click',position_tracker);
     var row = $(this).data('row');
     var column = $(this).data('column');
 
@@ -123,6 +124,7 @@ function position_tracker() {
 }
 
 function music_layering(){
+    $(this).off('click',music_layering);
     if(increment) {
         layers++;
         if(layers === 7){

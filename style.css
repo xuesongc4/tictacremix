@@ -304,3 +304,105 @@ h1{
 #resetGame:hover{
     cursor:pointer;
 }
+
+
+.trivia{
+    font-size: 20px;
+    color: white;
+    font-weight: bolder;
+    font-style: italic;
+    top: 1%;
+    left: 12%;
+    position: absolute;
+    text-align: center;
+    height: 10vh;
+    width: 35vw;
+    border-radius: 25px;
+    z-index: 6;
+}
+.question_board {
+    font-size: 20px;
+    color: white;
+    font-weight: bolder;
+    font-style: italic;
+    top: 5%;
+    left: 18%;
+    position: absolute;
+    height: 55vh;
+    width: 35vw;
+    border-radius: 25px;
+    z-index: 6;
+}
+
+.questions {
+    border: 3px solid white;
+    padding: 10px;
+    font-size: 20px;
+    position: absolute;
+    height: 60%;
+    width: 80%;
+    background-color: rgba(50, 50, 50, 0.5);
+    background-size: cover;
+    border-radius: 25px 25px 0px 0px;
+}
+
+.button_options {
+    border: 3px solid white;
+    border-top: none;
+    padding:10px;
+    height: 40%;
+    width: 80%;
+    background-color: rgba(50, 50, 50, 0.8);
+    top: 60%;
+    position: absolute;
+    border-radius: 0px 0px 25px 25px;
+}
+.button_options:hover{
+    cursor: pointer;
+}
+
+#button_option1 {
+    height: 50%;
+    width: 50%;
+
+    position: absolute;
+}
+
+#button_option2 {
+    height: 50%;
+    width: 50%;
+    left: 50%;
+    position: absolute;
+}
+
+#button_option3 {
+    height: 50%;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    border-radius: 0px 0px 25px 0px;
+}
+
+#button_option4 {
+    height: 50%;
+    width: 50%;
+
+    top: 50%;
+    position: absolute;
+    border-radius: 0px 0px 0px 25px;
+}
+.correct_answer{
+    font-size: 20px;
+    color: white;
+    font-weight: bolder;
+    font-style: italic;
+    top: 5%;
+    left: 18%;
+    position: absolute;
+    height: 45vh;
+    width: 35vw;
+    border-radius: 25px;
+    z-index: 6;
+    background-color: pink;
+}

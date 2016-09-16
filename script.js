@@ -11,10 +11,15 @@ var whos_turn = 'x';
 
 var layers = 0;
 var increment = true;
-
+var answer = null;
+var wrong_answer = null;
 var gameSize = null;
 var gameState = [];
-
+var question = null;
+var ans1= null;
+var ans2= null;
+var ans3= null;
+var ans4= null;
 
 var player1_name=null;
 var player2_name=null;
@@ -134,6 +139,7 @@ function closeButton() {
         }
         $('#toWin').append(randomWin+" need to win.")
     });
+    ajaX();
 }
 
 function loadSquares() {
@@ -162,7 +168,7 @@ function loadSquares() {
 
 function loadclickhandlers() {
     $('.gamesquare').on('click',function(){
-        $(this).off('click');
+        // $(this).off('click');
         position_tracker.call(this);
         music_layering.call(this);
     });
@@ -192,7 +198,14 @@ function music_layering(){
     //$("#audio")[0].currentTime = currentTime;
 }
 
+var answered = false;
+
 function position_tracker() {
+    console.log('clicked');
+    if (!answered) {
+        console.log('nope');
+        return;
+    }
     audioClick();
     var row = $(this).data('row');
     var column = $(this).data('column');
@@ -204,7 +217,9 @@ function position_tracker() {
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'o';
         $(".Player_turn").text(player2_name+"'s turn!");
-        checkWin(row, column, randomWin, 'x');
+        if (!checkWin(row, column, randomWin, 'x')) {
+            ajaX();
+        }
     }
     else if (whos_turn == 'o') {
         gameState[row][column] = 'o';
@@ -213,7 +228,9 @@ function position_tracker() {
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'x';
         $(".Player_turn").text(player1_name+"'s turn!");
-        checkWin(row, column, randomWin, 'o');
+        if (!checkWin(row, column, randomWin, 'o')) {
+            ajaX();
+        }
     }
 }
 
@@ -321,4 +338,64 @@ function checkLowerDiagonal(i, j, numberOfSpots, XorO) {
         }
     }
     return count === numberOfSpots;
+}
+
+
+function ajaX() {
+    console.log("ajax runing");
+    $.ajax({
+        // url: 'http://www.opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple',
+        url: 'http://brianphan88.com/questions/multiple_api.php',
+        // dataType: 'jsonp',
+        // method: 'get',
+        // crossDomain: true,
+        success: function (response) {
+            console.log("response: ", JSON.parse(response.substring(0, response.length - 1)));
+            answered = false;
+            // console.log(JSON.parse(response));
+            response = JSON.parse(response.substring(0, response.length - 1));
+            var i = Math.floor(Math.random() * 40);
+            question = response.results[i].question;
+            console.log(question);
+            $(".questions").html("");
+            $(".questions").append(question);
+            wrong_answer = response.results[i].incorrect_answers;
+            answer = response.results[i].correct_answer;
+            $(".button_option").html("");
+            ans1 = $("#button_option1").append(response.results[i].incorrect_answers[0]);
+            ans2 = $("#button_option2").append(response.results[i].incorrect_answers[1]);
+            ans3 = $("#button_option3").append(response.results[i].incorrect_answers[2]);
+            ans4 = $("#button_option4").append(response.results[i].correct_answer);
+            console.log(wrong_answer);
+            console.log(answer);
+
+        }
+    })
+    $(".button_option").click(function () {
+        var answer2 = $(this).text();
+        console.log(answer2);
+        if (answer2 == answer) {
+            $(".questions").text("");
+            // $(".button_options").text("");
+            var correct_answer = $('.questions').text("GOOD JOB, make a move");
+            $('question_board').append(correct_answer);
+            answered = true;
+        } else {
+            $(".questions").text("");
+            var incorrect_answer = $('.questions').text("Incorrect, You'll have to wait a turn");
+            if (whos_turn == 'x') {
+                whos_turn = 'o';
+            }
+            else {
+                whos_turn = 'x';
+            }
+            $('.questions').append(incorrect_answer);
+            var $nextQuestionButton = $('<button>Next Question</button>');
+            $nextQuestionButton.on('click', function() {
+                $(".questions").text("");
+                ajaX();
+            });
+            $('.questions').append($nextQuestionButton);
+        }
+    })
 }

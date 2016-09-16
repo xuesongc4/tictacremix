@@ -177,6 +177,7 @@ function closeButton() {
                 ajaX();
 
             });
+            $('.button_option').text('');
             $('.questions').append($nextQuestionButton);
         }
     });

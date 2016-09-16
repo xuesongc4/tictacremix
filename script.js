@@ -161,20 +161,14 @@ function loadSquares() {
 }
 
 function loadclickhandlers() {
-    $('.gamesquare').on('click',position_tracker);
-    $('.gamesquare').on('click',music_layering);
-    $('.gamesquare').on('click',unmute);
-}
-
-function unmute() {
-    console.log($('#audio'));
-    $("#audio").prop('muted', false);
-    console.log($('#audio').prop('muted'));
-    console.log('stuff');
+    $('.gamesquare').on('click',function(){
+        $(this).off('click');
+        position_tracker.call(this);
+        music_layering.call(this);
+    });
 }
 
 function music_layering(){
-    $(this).off('click',music_layering);
     if(increment) {
         layers++;
         if(layers === 7){
@@ -191,48 +185,15 @@ function music_layering(){
     $("#audio").prop('muted', false);
     var currentTime = $("#audio")[0].currentTime;
     
-    switch(layers){
-        case 1:
-            // $("#layer1").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer1.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 2:
-            // $("#layer2").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer2.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 3:
-            // $("#layer3").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer3.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 4:
-            // $("#layer4").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer4.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 5:
-            // $("#layer5").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer5.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 6:
-            // $("#layer6").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer6.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 7:
-            // $("#layer7").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer7.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
+    $("#audio").attr('src', 'music%20layers/layer'+layers+'.mp3');
+    $("#audio")[0].oncanplay=function(){
+        $("#audio").prop('muted', false);
     }
+    //$("#audio")[0].currentTime = currentTime;
 }
 
 function position_tracker() {
     audioClick();
-    $(this).off('click',position_tracker);
     var row = $(this).data('row');
     var column = $(this).data('column');
 

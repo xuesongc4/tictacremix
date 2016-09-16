@@ -3,23 +3,20 @@
  */
 
 $(document).ready(function() {
+
     initializeAudioVisualizer(document.getElementById('audio'));
+
 });
 
 $(document).ready(closeButton);
 var whos_turn = 'x';
 
-var layers = 0;
-var increment = true;
-
 var gameSize = null;
+
 var gameState = [];
 
-
-var player1_name=null;
-var player2_name=null;
-var randomWin=null;
-
+    var layers = 0;
+    var increment = true;
 
 //SCRIPT ===========================================
 
@@ -84,38 +81,19 @@ function initializeAudioVisualizer(audio){
 }
 
 
-function resetGame(){
-    location.reload();
-}
-
-function audioClick(){
-    $('#fx1').get(0).play();
-}
-function loadAudioFx(){
-    $('#fx2').get(0).play();
-}
-
 function closeButton() {
-
     $(".button").click(function () {
-        player1_name = "DJ " + $("#player1_name").val();
-        player2_name = "DJ " + $("#player2_name").val();
-        loadAudioFx();
+
+        var player1_name = "DJ " + $("#player1_name").val();
+        var player2_name = "DJ " + $("#player2_name").val();
         $("#DJ1").append(player1_name);
-        $(".Player_turn").text(player1_name+"'s turn!");
         $("#DJ2").append(player2_name);
         $(".front_page").slideToggle(1500);
-        $('.gamesquare').slideToggle(2000);
+        $('.gamesquare').slideToggle(3000);
     });
 
     $(".board_size").click(function () {
-        audioClick();
-        $(".gameboard").html("");
-        $("#toWin").html("");
         gameSize = +$(this).data('size');
-        $('.board_size').removeClass('buttonClicked');
-        $(this).addClass('buttonClicked');
-        var clicked = $(this).addClass();
         for (var i = 0; i < gameSize; i++) {
             gameState[i] = [];
             for (var j = 0; j < gameSize; j++) {
@@ -123,19 +101,8 @@ function closeButton() {
             }
         }
         loadSquares();
-        if(gameSize==3){
-            randomWin=3;
-        }
-        else if(gameSize==9){
-            randomWin=Math.floor(Math.random()*6)+3;
-        }
-        else{
-            randomWin=Math.floor(Math.random()*17)+3;
-        }
-        $('#toWin').append(randomWin+" need to win.")
     });
 }
-
 function loadSquares() {
     var $gameboard = $('.gameboard');
     for (var i = 0; i < gameSize; i++) {
@@ -161,78 +128,57 @@ function loadSquares() {
 }
 
 function loadclickhandlers() {
-    $('.gamesquare').on('click',position_tracker);
-    $('.gamesquare').on('click',music_layering);
-    $('.gamesquare').on('click',unmute);
-}
-
-function unmute() {
-    console.log($('#audio'));
-    $("#audio").prop('muted', false);
-    console.log($('#audio').prop('muted'));
-    console.log('stuff');
-}
-
-function music_layering(){
-    $(this).off('click',music_layering);
-    if(increment) {
-        layers++;
-        if(layers === 7){
-            increment = false;
+    $('.gamesquare').click(position_tracker);
+    $('.gamesquare').click(music_layering);
+    function music_layering(){
+        console.log(layers);
+        if(increment) {
+            layers++;
+            if(layers === 7){
+                increment = false;
+            }
         }
-    }
-    else{
-        layers--;
-        if(layers === 1){
-            increment = true;
+        else{
+            layers--;
+            if(layers === 1){
+                increment = true;
+            }
         }
-    }
-    // $('.music').prop('muted', true);
-    $("#audio").prop('muted', false);
-    var currentTime = $("#audio")[0].currentTime;
-    
-    switch(layers){
-        case 1:
-            // $("#layer1").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer1.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 2:
-            // $("#layer2").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer2.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 3:
-            // $("#layer3").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer3.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 4:
-            // $("#layer4").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer4.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 5:
-            // $("#layer5").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer5.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 6:
-            // $("#layer6").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer6.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
-        case 7:
-            // $("#layer7").prop('muted', false);
-            $("#audio").attr('src', 'music%20layers/layer7.mp3');
-            $("#audio")[0].currentTime = currentTime;
-            break;
+        var currentTime = $("#audio")[0].currentTime;
+        switch(layers){
+            case 1:
+                $("#audio").attr('src', 'music%20layers/layer1.mp3');
+                $("#audio")[0].currentTime = currentTime;
+                break;
+            case 2:
+                $("#audio").attr('src', 'music%20layers/layer2.mp3');
+                $("#audio")[0].currentTime = currentTime;
+                break;
+            case 3:
+                $("#audio").attr('src', 'music%20layers/layer3.mp3');
+                $("#audio")[0].currentTime = currentTime;
+                break;
+            case 4:
+                $("#audio").attr('src', 'music%20layers/layer4.mp3');
+                $("#audio")[0].currentTime = currentTime;
+                break;
+            case 5:
+                $("#audio").attr('src', 'music%20layers/layer5.mp3');
+                $("#audio")[0].currentTime = currentTime;
+                break;
+            case 6:
+                $("#audio").attr('src', 'music%20layers/layer6.mp3');
+                $("#audio")[0].currentTime = currentTime;
+                break;
+            case 7:
+                $("#audio").attr('src', 'music%20layers/layer7.mp3');
+                $("#audio")[0].currentTime = currentTime;
+                break;
+        }
     }
 }
 
 function position_tracker() {
-    audioClick();
-    $(this).off('click',position_tracker);
     var row = $(this).data('row');
     var column = $(this).data('column');
 
@@ -240,28 +186,22 @@ function position_tracker() {
         gameState[row][column] = 'x';
         var player1 = $('<div>').addClass('playerX');
         $(this).append(player1);
-        $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'o';
-        $(".Player_turn").text(player2_name+"'s turn!");
-        checkWin(row, column, randomWin, 'x');
     }
     else if (whos_turn == 'o') {
         gameState[row][column] = 'o';
         var player2 = $('<div>').addClass('playerO');
         $(this).append(player2);
-        $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'x';
-        $(".Player_turn").text(player1_name+"'s turn!");
-        checkWin(row, column, randomWin, 'o');
     }
 }
+
+
 
 
 //Win Condition functions
 function checkWin(i, j, numberOfSpots, XorO) {
     if (checkVertical(i, j, numberOfSpots, XorO) || checkUpperDiagonal(i, j, numberOfSpots, XorO) || checkHorizontal(i, j, numberOfSpots, XorO) || checkLowerDiagonal(i, j, numberOfSpots, XorO)) {
-        $('.winner').slideToggle();
-        loadAudioFx();
         return true;
     }
     return false;

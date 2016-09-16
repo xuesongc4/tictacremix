@@ -1,3 +1,22 @@
+
+$.ajax({
+  url: 'http://www.opentdb.com/api.php?amount=10',
+  headers: {
+  	"Access-Control-Allow-Origin": "*",
+  	"Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  	"Access-Control-Allow-Headers": "Content-Type"
+  },
+  dataType: 'jsonp',
+  jsonp: 'jsonp',
+  method: 'get',
+  crossDomain: true,
+  success: function (response) {
+    console.log("response: ");
+    // var question = response.results[0].question;
+    // $(".questionboard").append(question);
+  }
+});
+
 var gameState = [];
 var boardSizes = [3,9,20];
 

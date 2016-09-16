@@ -144,7 +144,43 @@ function closeButton() {
         }
         $('#toWin').append(randomWin + " need to win.")
     });
-    ajaX();
+    $(".button_option").click(function () {
+        var answer2 = $(this).text();
+        console.log(answer2);
+        if (answer2 == answer) {
+           $(".cover_box").fadeOut();
+            $(".questions").text("");
+            // $(".button_options").text("");
+            var correct_answer = $('.questions').text("GOOD JOB, make a move");
+            $('question_board').append(correct_answer);
+            answered = true;
+        } else {
+            $(".questions").text("");
+            var incorrect_answer = $('.questions').text("Incorrect, You'll have to wait a turn");
+            console.log("THE TURN  IS: ", incorrect_answer);
+            if (whos_turn == 'x') {
+
+                whos_turn = 'o';
+                $(".Player_turn").text(player2_name + "'s turn!");
+                $("#DJ1").css("box-shadow", "0 0 0 black");
+                $("#DJ2").css("box-shadow", "0 0 30px 5px white");
+            } else if (whos_turn == 'o') {
+                whos_turn = 'x';
+                $(".Player_turn").text(player1_name + "'s turn!");
+                $("#DJ2").css("box-shadow", "0 0 0 black");
+                $("#DJ1").css("box-shadow", "0 0 30px 5px white");
+            }
+            $('.questions').append(incorrect_answer);
+            var $nextQuestionButton = $('<button>Next Question</button>');
+            $nextQuestionButton.on('click', function () {
+                $(".questions").text("");
+                ajaX();
+
+            });
+            $('.questions').append($nextQuestionButton);
+        }
+    });
+    $('.button').click(ajaX);
 }
 
 function loadSquares() {
@@ -365,62 +401,25 @@ function ajaX() {
         // method: 'get',
         // crossDomain: true,
         success: function (response) {
-            console.log("response: ", JSON.parse(response.substring(0, response.length - 1)));
+            // console.log("response: ", JSON.parse(response.substring(0, response.length - 1)));
             answered = false;
             // console.log(JSON.parse(response));
             response = JSON.parse(response.substring(0, response.length - 1));
             var i = Math.floor(Math.random() * 40);
             question = response.results[i].question;
-            console.log(question);
+            // console.log(question);
             $(".questions").html("");
             $(".questions").append(question);
             wrong_answer = response.results[i].incorrect_answers;
             answer = response.results[i].correct_answer;
             $(".button_option").html("");
-            ans1 = $("#button_option1").append(response.results[i].incorrect_answers[0]);
-            ans2 = $("#button_option2").append(response.results[i].incorrect_answers[1]);
-            ans3 = $("#button_option3").append(response.results[i].incorrect_answers[2]);
-            ans4 = $("#button_option4").append(response.results[i].correct_answer);
-            console.log(wrong_answer);
-            console.log(answer);
-
+            ans1 = $("#button_option1").text(response.results[i].incorrect_answers[0]);
+            ans2 = $("#button_option2").text(response.results[i].incorrect_answers[1]);
+            ans3 = $("#button_option3").text(response.results[i].incorrect_answers[2]);
+            ans4 = $("#button_option4").text(response.results[i].correct_answer);
+            // console.log(wrong_answer);
+            // console.log(answer);
         }
     })
-    $(".button_option").click(function () {
-        var answer2 = $(this).text();
-        console.log(answer2);
-        if (answer2 == answer) {
-           $(".cover_box").fadeOut();
-            $(".questions").text("");
-            // $(".button_options").text("");
-            var correct_answer = $('.questions').text("GOOD JOB, make a move");
-            $('question_board').append(correct_answer);
-            answered = true;
-        } else {
-            $(".questions").text("");
-            var incorrect_answer = $('.questions').text("Incorrect, You'll have to wait a turn");
-            console.log("THE TURN  IS: ", incorrect_answer);
-            if (whos_turn == 'x') {
-
-                whos_turn = 'o';
-                $(".Player_turn").text(player2_name + "'s turn!");
-                $("#DJ1").css("box-shadow", "0 0 0 black");
-                $("#DJ2").css("box-shadow", "0 0 30px 5px white");
-            }
-            else {
-                whos_turn = 'x';
-                $(".Player_turn").text(player1_name + "'s turn!");
-                $("#DJ2").css("box-shadow", "0 0 0 black");
-                $("#DJ1").css("box-shadow", "0 0 30px 5px white");
-            }
-            $('.questions').append(incorrect_answer);
-            var $nextQuestionButton = $('<button>Next Question</button>');
-            $nextQuestionButton.on('click', function () {
-                $(".questions").text("");
-                ajaX();
-
-            });
-            $('.questions').append($nextQuestionButton);
-        }
-    })
+    
 }

@@ -43,6 +43,7 @@ function closeButton() {
         $(".gameboard").html("");
         $("#toWin").html("");
         gameSize = +$(this).data('size');
+        $('.board_size').removeClass('buttonClicked');
         $(this).addClass('buttonClicked');
         var clicked = $(this).addClass();
         for (var i = 0; i < gameSize; i++) {

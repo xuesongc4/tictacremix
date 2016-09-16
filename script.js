@@ -146,7 +146,8 @@ function closeButton() {
     });
     $(".button_option").click(function () {
         var answer2 = $(this).text();
-        console.log(answer2);
+        // console.log(answer2);
+        $('.button_options').css('pointer-events', 'none');
         if (answer2 == answer) {
            $(".cover_box").fadeOut();
             $(".questions").text("");
@@ -178,7 +179,6 @@ function closeButton() {
 
             });
             $('.button_option').text('');
-            $('.button_options').css('pointer-events', 'none');
             $('.questions').append($nextQuestionButton);
         }
     });

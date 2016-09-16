@@ -383,22 +383,22 @@ h1 {
 }
 
 #button_option1 {
-    height: 50%;
-    width: 50%;
+    height: 40%;
+    width: 40%;
 
     position: absolute;
 }
 
 #button_option2 {
-    height: 50%;
-    width: 50%;
+    height: 40%;
+    width: 40%;
     left: 50%;
     position: absolute;
 }
 
 #button_option3 {
-    height: 50%;
-    width: 50%;
+    height: 40%;
+    width: 40%;
     top: 50%;
     left: 50%;
     position: absolute;
@@ -406,12 +406,14 @@ h1 {
 }
 
 #button_option4 {
-    height: 50%;
-    width: 50%;
-
+    height: 40%;
+    width: 40%;
     top: 50%;
     position: absolute;
     border-radius: 0px 0px 0px 25px;
+}
+.button_option:hover{
+    color:red;
 }
 
 .correct_answer {

@@ -2,7 +2,7 @@
  * Created by OF on 9/14/16.
  */
 
-$(document).ready(function() {
+$(document).ready(function () {
     initializeAudioVisualizer(document.getElementById('audio'));
 });
 
@@ -16,24 +16,24 @@ var wrong_answer = null;
 var gameSize = null;
 var gameState = [];
 var question = null;
-var ans1= null;
-var ans2= null;
-var ans3= null;
-var ans4= null;
+var ans1 = null;
+var ans2 = null;
+var ans3 = null;
+var ans4 = null;
 
-var player1_name=null;
-var player2_name=null;
-var randomWin=null;
+var player1_name = null;
+var player2_name = null;
+var randomWin = null;
 
 
 //SCRIPT ===========================================
 
-function initializeAudioVisualizer(audio){
+function initializeAudioVisualizer(audio) {
     var audCtx = new AudioContext();
     var analyser = audCtx.createAnalyser();
-    var audioSrc=null;
+    var audioSrc = null;
 
-    if(audioSrc!==null){
+    if (audioSrc !== null) {
         audioSrc.disconnect();
     }
     audioSrc = audCtx.createMediaElementSource(audio);
@@ -56,7 +56,7 @@ function initializeAudioVisualizer(audio){
         meterNum = 500, //count of the meters
         capYPositionArray = []; ////store the vertical position of hte caps for the preivous frame
     ctx = canvas.getContext('2d'),
-        gradient = ctx.createLinearGradient(0,0,0,1);
+        gradient = ctx.createLinearGradient(0, 0, 0, 1);
     gradient.addColorStop(1, '#f00');
     gradient.addColorStop(0.5, '#ff0');
     gradient.addColorStop(0, '#f00');
@@ -70,7 +70,8 @@ function initializeAudioVisualizer(audio){
             var value = array[i * step];
             if (capYPositionArray.length < Math.round(meterNum)) {
                 capYPositionArray.push(value);
-            };
+            }
+            ;
             ctx.fillStyle = capStyle;
             //draw the cap, with transition effect
             if (value < capYPositionArray[i]) {
@@ -78,39 +79,43 @@ function initializeAudioVisualizer(audio){
             } else {
                 ctx.fillRect(i * 12, cheight - value, meterWidth, capHeight);
                 capYPositionArray[i] = value;
-            };
+            }
+            ;
             ctx.fillStyle = gradient; //set the filllStyle to gradient for a better look
-            ctx.fillRect(i * 12 /*meterWidth+gap*/ , cheight - value + capHeight, meterWidth, cheight); //the meter
+            ctx.fillRect(i * 12 /*meterWidth+gap*/, cheight - value + capHeight, meterWidth, cheight); //the meter
         }
         requestAnimationFrame(renderFrame);
 
     }
+
     renderFrame();
 }
 
 
-function resetGame(){
+function resetGame() {
     location.reload();
 }
 
-function audioClick(){
+function audioClick() {
     $('#fx1').get(0).play();
 }
-function loadAudioFx(){
+function loadAudioFx() {
     $('#fx2').get(0).play();
 }
 
 function closeButton() {
-
+    $(".cover_box").hide();
+    $("#DJ1").css("box-shadow", "0 0 30px 5px white");
     $(".button").click(function () {
         player1_name = "DJ " + $("#player1_name").val();
         player2_name = "DJ " + $("#player2_name").val();
         loadAudioFx();
         $("#DJ1").append(player1_name);
-        $(".Player_turn").text(player1_name+"'s turn!");
+        $(".Player_turn").text(player1_name + "'s turn!");
         $("#DJ2").append(player2_name);
         $(".front_page").slideToggle(1500);
         $('.gamesquare').slideToggle(2000);
+        $('.cover_box').fadeIn(2000);
     });
 
     $(".board_size").click(function () {
@@ -128,16 +133,16 @@ function closeButton() {
             }
         }
         loadSquares();
-        if(gameSize==3){
-            randomWin=3;
+        if (gameSize == 3) {
+            randomWin = 3;
         }
-        else if(gameSize==9){
-            randomWin=Math.floor(Math.random()*6)+3;
+        else if (gameSize == 9) {
+            randomWin = Math.floor(Math.random() * 6) + 3;
         }
-        else{
-            randomWin=Math.floor(Math.random()*17)+3;
+        else {
+            randomWin = Math.floor(Math.random() * 17) + 3;
         }
-        $('#toWin').append(randomWin+" need to win.")
+        $('#toWin').append(randomWin + " need to win.")
     });
     ajaX();
 }
@@ -167,32 +172,32 @@ function loadSquares() {
 }
 
 function loadclickhandlers() {
-    $('.gamesquare').on('click',function(){
+    $('.gamesquare').on('click', function () {
         // $(this).off('click');
         position_tracker.call(this);
         music_layering.call(this);
     });
 }
 
-function music_layering(){
-    if(increment) {
+function music_layering() {
+    if (increment) {
         layers++;
-        if(layers === 7){
+        if (layers === 7) {
             increment = false;
         }
     }
-    else{
+    else {
         layers--;
-        if(layers === 1){
+        if (layers === 1) {
             increment = true;
         }
     }
     // $('.music').prop('muted', true);
     $("#audio").prop('muted', false);
     var currentTime = $("#audio")[0].currentTime;
-    
-    $("#audio").attr('src', 'music%20layers/layer'+layers+'.mp3');
-    $("#audio")[0].oncanplay=function(){
+
+    $("#audio").attr('src', 'music%20layers/layer' + layers + '.mp3');
+    $("#audio")[0].oncanplay = function () {
         $("#audio").prop('muted', false);
     }
     //$("#audio")[0].currentTime = currentTime;
@@ -211,23 +216,31 @@ function position_tracker() {
     var column = $(this).data('column');
 
     if (whos_turn == 'x') {
+
+        $("#DJ1").css("box-shadow", "0 0 0 black");
         gameState[row][column] = 'x';
         var player1 = $('<div>').addClass('playerX');
         $(this).append(player1);
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'o';
-        $(".Player_turn").text(player2_name+"'s turn!");
+        $(".Player_turn").text(player2_name + "'s turn!");
+        $("#DJ2").css("box-shadow", "0 0 30px 5px white");
+        $('.cover_box').fadeIn(2000);
         if (!checkWin(row, column, randomWin, 'x')) {
             ajaX();
         }
     }
     else if (whos_turn == 'o') {
+
+        $("#DJ2").css("box-shadow", "0 0 0 black");
         gameState[row][column] = 'o';
         var player2 = $('<div>').addClass('playerO');
         $(this).append(player2);
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'x';
-        $(".Player_turn").text(player1_name+"'s turn!");
+        $(".Player_turn").text(player1_name + "'s turn!");
+        $("#DJ1").css("box-shadow", "0 0 30px 5px white");
+        $('.cover_box').fadeIn(2000);
         if (!checkWin(row, column, randomWin, 'o')) {
             ajaX();
         }
@@ -239,7 +252,9 @@ function position_tracker() {
 function checkWin(i, j, numberOfSpots, XorO) {
     if (checkVertical(i, j, numberOfSpots, XorO) || checkUpperDiagonal(i, j, numberOfSpots, XorO) || checkHorizontal(i, j, numberOfSpots, XorO) || checkLowerDiagonal(i, j, numberOfSpots, XorO)) {
         $('.winner').slideToggle();
-        setTimeout(function(){$('#audio').prop('muted',true);}, 1000);
+        setTimeout(function () {
+            $('#audio').prop('muted', true);
+        }, 1000);
         loadAudioFx();
         return true;
     }
@@ -375,6 +390,7 @@ function ajaX() {
         var answer2 = $(this).text();
         console.log(answer2);
         if (answer2 == answer) {
+           $(".cover_box").fadeOut();
             $(".questions").text("");
             // $(".button_options").text("");
             var correct_answer = $('.questions').text("GOOD JOB, make a move");
@@ -383,19 +399,26 @@ function ajaX() {
         } else {
             $(".questions").text("");
             var incorrect_answer = $('.questions').text("Incorrect, You'll have to wait a turn");
+            console.log("THE TURN  IS: ", incorrect_answer);
             if (whos_turn == 'x') {
+
                 whos_turn = 'o';
-                $(".Player_turn").text(player2_name+"'s turn!");
+                $(".Player_turn").text(player2_name + "'s turn!");
+                $("#DJ1").css("box-shadow", "0 0 0 black");
+                $("#DJ2").css("box-shadow", "0 0 30px 5px white");
             }
             else {
                 whos_turn = 'x';
-                $(".Player_turn").text(player1_name+"'s turn!");
+                $(".Player_turn").text(player1_name + "'s turn!");
+                $("#DJ2").css("box-shadow", "0 0 0 black");
+                $("#DJ1").css("box-shadow", "0 0 30px 5px white");
             }
             $('.questions').append(incorrect_answer);
             var $nextQuestionButton = $('<button>Next Question</button>');
-            $nextQuestionButton.on('click', function() {
+            $nextQuestionButton.on('click', function () {
                 $(".questions").text("");
                 ajaX();
+
             });
             $('.questions').append($nextQuestionButton);
         }

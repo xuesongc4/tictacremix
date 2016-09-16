@@ -12,8 +12,8 @@ body {
     margin: 0;
     height: 100vh;
     width: 85%;
-    display:inline-block;
-    float:right;
+    display: inline-block;
+    float: right;
     background-image: url("images/background2.jpg");
     background-size: cover;
     z-index: -2;
@@ -26,25 +26,25 @@ body {
     height: 100vh;
     width: 15%;
     background-image: url(images/background3.jpg);
-    background-size:contain;
-    display:inline-block;
+    background-size: contain;
+    display: inline-block;
 
 }
 
-.sidebar_style{
+.sidebar_style {
     text-align: center;
     padding: 0;
-    border-radius:10px;
+    border-radius: 10px;
     height: 10%;
     width: 50%;
-    margin:auto;
+    margin: auto;
     margin-top: 30px;
     border: 5px solid red;
-    color:white;
+    color: white;
     font-weight: bolder;
     font-style: italic;
-    font-size:20px;
-    background-color: rgba(50,50,50,.95);
+    font-size: 20px;
+    background-color: rgba(50, 50, 50, .95);
 }
 
 .score {
@@ -58,12 +58,13 @@ body {
     height: 10%;
     width: 50%;
     text-align: center;
-    margin:auto;
+    margin: auto;
     margin-top: 30px;
-    color:white;
+    color: white;
     font-weight: bolder;
     font-style: italic;
-    font-size:25px;
+    font-size: 25px;
+    box-shadow: 0 0 0 black;
 
 }
 
@@ -74,12 +75,15 @@ body {
 
 .gamesquare {
     display: inline-block;
-    margin:2px;
-    background-color: rgba(50,50,50,.5);
+    margin: 2px;
+    background-color: rgba(50, 50, 50, .5);
+    z-index:3;
 }
-.gamesquare:hover{
+
+.gamesquare:hover {
     cursor: pointer;
 }
+
 .gamesquare3 {
     height: 175px;
     width: 175px;
@@ -101,7 +105,7 @@ body {
     background-repeat: no-repeat;
     height: 90%;
     width: 90%;
-    margin:auto;
+    margin: auto;
     margin-top: 5%;
 }
 
@@ -122,7 +126,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-image: url(images/background1.gif);
-    background-size:cover ;
+    background-size: cover;
     z-index: 10;
 }
 
@@ -130,45 +134,46 @@ body {
     line-height: 100px;
     text-align: center;
     font-weight: bolder;
-    bottom:10%;
+    bottom: 10%;
     right: 5%;
     height: 250px;
     width: 250px;
-    position:absolute;
+    position: absolute;
     font-size: 20px;
-    color:white;
+    color: white;
     font-style: italic;
-    border: 65px rgb(20,20,20) solid;
+    border: 65px rgb(20, 20, 20) solid;
     border-radius: 100%;
     background-image: url(images/buttonBackground.jpg);
-    background-size:contain;
+    background-size: contain;
     transition-duration: 1s;
 }
 
-.button:hover{
+.button:hover {
     transform: rotate(10800deg);
     transition-duration: 20s;
     cursor: pointer;
 }
 
 .input_name {
-    padding:0;
-    padding-top:115px;
-    padding-left:80px;
-    color:orangered;
+    padding: 0;
+    padding-top: 115px;
+    padding-left: 80px;
+    color: orangered;
     font-weight: bolder;
     font-style: italic;
-    font-size:25px;
+    font-size: 25px;
     position: absolute;
     height: 200px;
     width: 350px;
-    background-color: rgba(255,255,255, 0);
+    background-color: rgba(255, 255, 255, 0);
     background-image: url(images/backstagepass.png);
     background-size: cover;
     border: none;
     transform: rotate(-20deg);
     transition-duration: 300ms;
 }
+
 .input_name:hover {
     z-index: 10;
     transform: rotate(5deg);
@@ -187,126 +192,140 @@ body {
     top: -5%;
     left: 20%;
 }
-#three{
+
+#three {
     top: 4%;
     right: 13%;
 }
-#nine{
-    top:17%;
-    right:7%
+
+#nine {
+    top: 17%;
+    right: 7%
 }
-#twenty{
-    top:30%;
-    right:2%;
+
+#twenty {
+    top: 30%;
+    right: 2%;
 }
-.board_size{
-    line-height:60px;
+
+.board_size {
+    line-height: 60px;
     text-align: center;
     font-size: 30px;
     position: absolute;
     height: 60px;
     width: 300px;
     color: orangered;
-    font-weight:bolder;
-    font-style:italic;
-    background-color: rgba(255,255,255,.6);
+    font-weight: bolder;
+    font-style: italic;
+    background-color: rgba(255, 255, 255, .6);
     border-radius: 30px;
     transition-duration: .5s;
     border: 3px orangered solid;
     box-sizing: border-box;
 }
+
 #three:hover {
     cursor: pointer;
-    background:white;
-}
-#nine:hover {
-    cursor: pointer;
-    background:white;
-}
-#twenty:hover {
-    cursor: pointer;
-    background:white;
+    background: white;
 }
 
-.gameboard{
+#nine:hover {
+    cursor: pointer;
+    background: white;
+}
+
+#twenty:hover {
+    cursor: pointer;
+    background: white;
+}
+
+.gameboard {
     position: absolute;
-    right:10%;
-    top:10%;
+    right: 10%;
+    top: 10%;
     z-index: 2;
 }
-#canvas{
+
+#canvas {
     position: absolute;
-    bottom:0;
-    right:0;
+    bottom: 0;
+    right: 0;
 }
-.sidebar_column{
-    width:48%;
-    display:inline-block;
+
+.sidebar_column {
+    width: 48%;
+    display: inline-block;
 }
-#title{
+
+#title {
     font-style: italic;
-    text-decoration:underline;
-    color:orangered;
+    text-decoration: underline;
+    color: orangered;
     font-weight: bolder;
     position: absolute;
     bottom: 9%;
     transform: rotate(10deg);
-    background-color: rgba(0,0,0,.9);
+    background-color: rgba(0, 0, 0, .9);
 }
-#title h1{
+
+#title h1 {
     font-size: 75px;
 }
 
-.buttonClicked{
+.buttonClicked {
     background-color: white;
     border-color: red;
-    color:red;
+    color: red;
     border-width: 5px;
     margin-right: 50px;
 }
-.winner{
-    height:700px;
-    width:700px;
+
+.winner {
+    height: 700px;
+    width: 700px;
     position: absolute;
     right: 5%;
     bottom: 5%;
-    color:white;
+    color: white;
     font-size: 80px;
-    font-weight:bolder;
-    font-style:italic;
-    border: 200px rgb(20,20,20) solid;
+    font-weight: bolder;
+    font-style: italic;
+    border: 200px rgb(20, 20, 20) solid;
     border-radius: 100%;
     background-image: url(images/buttonBackground.jpg);
-    background-size:contain;
+    background-size: contain;
     text-align: center;
     padding-top: 25px;
     z-index: 5;
     display: none;
 }
-.reset{
-    border:3px solid white;
+
+.reset {
+    border: 3px solid white;
     font-size: 20px;
     border-radius: 20px;
-    background-color:rgba(255,255,255,.3)
-}
-.reset:hover{
-    cursor:pointer;
-    background-color:rgba(255,255,255,.7)
+    background-color: rgba(255, 255, 255, .3)
 }
 
-h1{
+.reset:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, .7)
+}
+
+h1 {
     text-align: center;
-    color:red;
+    color: red;
     font-weight: bolder;
     font-style: italic;
-    font-size:50px;
-}
-#resetGame:hover{
-    cursor:pointer;
+    font-size: 50px;
 }
 
+#resetGame:hover {
+    cursor: pointer;
+}
 
-.trivia{
+.trivia {
     font-size: 20px;
     color: white;
     font-weight: bolder;
@@ -320,6 +339,7 @@ h1{
     border-radius: 25px;
     z-index: 6;
 }
+
 .question_board {
     font-size: 20px;
     color: white;
@@ -349,7 +369,7 @@ h1{
 .button_options {
     border: 3px solid white;
     border-top: none;
-    padding:10px;
+    padding: 10px;
     height: 40%;
     width: 100%;
     background-color: rgba(50, 50, 50, 0.8);
@@ -357,7 +377,8 @@ h1{
     position: absolute;
     border-radius: 0px 0px 25px 25px;
 }
-.button_options:hover{
+
+.button_options:hover {
     cursor: pointer;
 }
 
@@ -392,7 +413,8 @@ h1{
     position: absolute;
     border-radius: 0px 0px 0px 25px;
 }
-.correct_answer{
+
+.correct_answer {
     font-size: 20px;
     color: white;
     font-weight: bolder;
@@ -405,4 +427,15 @@ h1{
     border-radius: 25px;
     z-index: 6;
     background-color: pink;
+}
+
+.cover_box {
+    height: 100%;
+    width: 85%;
+    position: absolute;
+    /*background-image: url("images/background2.jpg");*/
+    /*background-size: cover;*/
+    background-color: black;
+    opacity:0.8;
+    z-index: 4;
 }

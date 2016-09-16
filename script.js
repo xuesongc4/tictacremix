@@ -178,6 +178,7 @@ function closeButton() {
 
             });
             $('.button_option').text('');
+            $('.button_options').css('pointer-events', 'none');
             $('.questions').append($nextQuestionButton);
         }
     });
@@ -414,6 +415,7 @@ function ajaX() {
             wrong_answer = response.results[i].incorrect_answers;
             answer = response.results[i].correct_answer;
             $(".button_option").html("");
+            $('.button_options').css('pointer-events', 'auto');
             ans1 = $("#button_option1").text(response.results[i].incorrect_answers[0]);
             ans2 = $("#button_option2").text(response.results[i].incorrect_answers[1]);
             ans3 = $("#button_option3").text(response.results[i].incorrect_answers[2]);

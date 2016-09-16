@@ -261,6 +261,7 @@ function position_tracker() {
 function checkWin(i, j, numberOfSpots, XorO) {
     if (checkVertical(i, j, numberOfSpots, XorO) || checkUpperDiagonal(i, j, numberOfSpots, XorO) || checkHorizontal(i, j, numberOfSpots, XorO) || checkLowerDiagonal(i, j, numberOfSpots, XorO)) {
         $('.winner').slideToggle();
+        setTimeout(function(){$('#audio').prop('muted',true);}, 1000);
         loadAudioFx();
         return true;
     }

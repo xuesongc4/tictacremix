@@ -20,6 +20,8 @@ var ans1 = null;
 var ans2 = null;
 var ans3 = null;
 var ans4 = null;
+var spotsFilled = 0;
+var totalSpots;
 
 var player1_name = null;
 var player2_name = null;
@@ -123,6 +125,7 @@ function closeButton() {
         $(".gameboard").html("");
         $("#toWin").html("");
         gameSize = +$(this).data('size');
+        totalSpots = gameSize * gameSize;
         $('.board_size').removeClass('buttonClicked');
         $(this).addClass('buttonClicked');
         var clicked = $(this).addClass();
@@ -252,6 +255,7 @@ function position_tracker() {
     audioClick();
     var row = $(this).data('row');
     var column = $(this).data('column');
+    spotsFilled++;
 
     if (whos_turn == 'x') {
 
@@ -289,12 +293,21 @@ function position_tracker() {
 //Win Condition functions
 function checkWin(i, j, numberOfSpots, XorO) {
     if (checkVertical(i, j, numberOfSpots, XorO) || checkUpperDiagonal(i, j, numberOfSpots, XorO) || checkHorizontal(i, j, numberOfSpots, XorO) || checkLowerDiagonal(i, j, numberOfSpots, XorO)) {
+        $('.message').text("You're a star!");
         $('.winner').slideToggle();
         setTimeout(function () {
             $('#audio').prop('muted', true);
         }, 1000);
         loadAudioFx();
         return true;
+    }
+    if (spotsFilled === totalSpots) {
+        $('.message').text("TIE game...");
+        $('.winner').slideToggle();
+        setTimeout(function () {
+            $('#audio').prop('muted', true);
+        }, 1000);
+        loadAudioFx();
     }
     return false;
 }

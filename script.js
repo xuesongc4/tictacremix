@@ -385,9 +385,11 @@ function ajaX() {
             var incorrect_answer = $('.questions').text("Incorrect, You'll have to wait a turn");
             if (whos_turn == 'x') {
                 whos_turn = 'o';
+                $(".Player_turn").text(player2_name+"'s turn!");
             }
             else {
                 whos_turn = 'x';
+                $(".Player_turn").text(player1_name+"'s turn!");
             }
             $('.questions').append(incorrect_answer);
             var $nextQuestionButton = $('<button>Next Question</button>');

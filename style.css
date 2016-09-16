@@ -246,61 +246,75 @@ body {
     width: 48%;
     display: inline-block;
 }
-
+.trivia{
+    font-size: 20px;
+    color: white;
+    font-weight: bolder;
+    font-style: italic;
+    top: 1%;
+    left: 12%;
+    position: absolute;
+    text-align: center;
+    height: 10vh;
+    width: 45vw;
+    border-radius: 25px;
+    z-index: 6;
+}
 .question_board {
-    font-size: 10px;
+    font-size: 20px;
+    color: white;
+    font-weight: bolder;
+    font-style: italic;
     top: 5%;
     left: 18%;
     position: absolute;
-    height: 35vh;
-    width: 25vw;
-    background-color: pink;
-    background-size: cover;
-    opacity: 0.5;
+    height: 45vh;
+    width: 35vw;
     border-radius: 25px;
+    z-index: 6;
 }
 
-.clickApi {
-    height: 20px;
-    width: 20px;
-    position: absolute;
-    top: 2%;
-    left: 35%;
-    background-color: red;
-    z-index: 1;
-}
+
 
 .questions {
-    font-size: 10px;
+    border: 3px solid white;
+
+    padding: 10px;
+    font-size: 20px;
     position: absolute;
     height: 60%;
     width: 100%;
-    background-color: green;
+    background-color: rgba(50, 50, 50, 0.5);
     background-size: cover;
-    opacity: 0.5;
     border-radius: 25px 25px 0px 0px;
 }
 
 .button_options {
+    border: 3px solid white;
+    border-top: none;
+    padding:10px;
     height: 40%;
     width: 100%;
-    background-color: green;
+    background-color: rgba(50, 50, 50, 0.8);
     top: 60%;
     position: absolute;
     border-radius: 0px 0px 25px 25px;
+}
+.button_options:hover{
+    cursor: pointer;
 }
 
 #button_option1 {
     height: 50%;
     width: 50%;
-    background-color: yellow;
+
     position: absolute;
 }
 
 #button_option2 {
     height: 50%;
     width: 50%;
-    background-color: red;
+
     left: 50%;
     position: absolute;
 }
@@ -308,9 +322,9 @@ body {
 #button_option3 {
     height: 50%;
     width: 50%;
-    background-color: blue;
+
     top: 50%;
-    left:50%;
+    left: 50%;
     position: absolute;
     border-radius: 0px 0px 25px 0px;
 }
@@ -318,8 +332,22 @@ body {
 #button_option4 {
     height: 50%;
     width: 50%;
-    background-color: red;
+
     top: 50%;
     position: absolute;
     border-radius: 0px 0px 0px 25px;
+}
+.correct_answer{
+    font-size: 20px;
+    color: white;
+    font-weight: bolder;
+    font-style: italic;
+    top: 5%;
+    left: 18%;
+    position: absolute;
+    height: 45vh;
+    width: 35vw;
+    border-radius: 25px;
+    z-index: 6;
+    background-color: pink;
 }

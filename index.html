@@ -26,23 +26,23 @@
     <div class="button">StartGame!</div>
 </div>
 
-    <div id="side">
-        <header id="game_header" class="sidebar_style">Game Area</header>
-        <div class="score" class="sidebar_style">
-            <div id="score_result" class="sidebar_style">Score</div>
-            <div>
-                <div class="sidebar_column">2</div>
-                <div class="sidebar_column">3</div>
-            </div>
-        </div>
-        <div class="Players sidebar_style">
-            <div id="DJ1" class="sidebar_style sidebar_style"></div>
-            <div id="DJ2" class="sidebar_style sidebar_style"></div>
-        </div>
-        <div class="Player_turn sidebar_style">
-            player 1 turn
+<div id="side">
+    <header id="game_header" class="sidebar_style">Game Area</header>
+    <div class="score" class="sidebar_style">
+        <div id="score_result" class="sidebar_style">Score</div>
+        <div>
+            <div class="sidebar_column">2</div>
+            <div class="sidebar_column">3</div>
         </div>
     </div>
+    <div class="Players sidebar_style">
+        <div id="DJ1" class="sidebar_style sidebar_style"></div>
+        <div id="DJ2" class="sidebar_style sidebar_style"></div>
+    </div>
+    <div class="Player_turn sidebar_style">
+        player 1 turn
+    </div>
+</div>
 
 <audio id="layer1" class="music" src="music%20layers/layer1.mp3" autoplay loop></audio>
 <audio id="layer2" class="music" src="music%20layers/layer2.mp3" muted autoplay loop></audio>
@@ -50,10 +50,12 @@
 <audio id="layer4" class="music" src="music%20layers/layer4.mp3" muted autoplay loop></audio>
 <audio id="layer5" class="music" src="music%20layers/layer5.mp3" muted autoplay loop></audio>
 <audio id="layer6" class="music" src="music%20layers/layer6.mp3" muted autoplay loop></audio>
-<audio id="audio" class="music" src="music%20layers/layer7.mp3"  autoplay loop></audio>
+<audio id="audio" class="music" src="music%20layers/layer7.mp3" autoplay loop></audio>
 
 <div id="main">
+
     <div class="gameboard"></div>
+<div class="trivia">answer trivia to go</div>
     <div class="question_board">
         <div class="questions"></div>
         <div class="button_options">
@@ -63,8 +65,6 @@
             <div id="button_option4" class="button_option"></div>
         </div>
     </div>
-
-    <div class="clickApi">Click</div>
 </div>
 <canvas id='canvas' width="1000" height="500"></canvas>
 </div>

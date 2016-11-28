@@ -15,7 +15,7 @@
     <script src="script.js"></script>
 </head>
 <body>
-<div class="front_page">
+<div class="front_page" style="overflow: hidden">
     <input type="text" placeholder="Input DJ1 Name" class="input_name" id="player1_name">
     <input type="text" placeholder="Input DJ2 Name" class="input_name" id="player2_name">
 
@@ -25,10 +25,11 @@
     <div id="title"><h1>Tic-Tac-REMIX! &nbsp</h1></div>
     <div class="button">StartGame!</div>
 </div>
+<div id="main_page" class="hidden">
     <div id="side">
-            <div id="DJ1" class="sidebar_style"></div>
-            <h1>VS.</h1>
-            <div id="DJ2" class="sidebar_style"></div>
+        <div id="DJ1" class="sidebar_style"></div>
+        <h1>VS.</h1>
+        <div id="DJ2" class="sidebar_style"></div>
         <div class="Player_turn sidebar_style">
         </div>
         <div id="resetGame" class="sidebar_style" onclick="resetGame()">
@@ -38,35 +39,30 @@
         </div>
     </div>
 
-<audio id="audio" class="music" src="music%20layers/audio_menu.wav"autoplay loop></audio>
-<!-- <audio id="layer1" class="music" src="music%20layers/layer1.mp3" muted autoplay loop></audio>
-<audio id="layer2" class="music" src="music%20layers/layer2.mp3" muted autoplay loop></audio>
-<audio id="layer3" class="music" src="music%20layers/layer3.mp3" muted autoplay loop></audio>
-<audio id="layer4" class="music" src="music%20layers/layer4.mp3" muted autoplay loop></audio>
-<audio id="layer5" class="music" src="music%20layers/layer5.mp3" muted autoplay loop></audio>
-<audio id="layer6" class="music" src="music%20layers/layer6.mp3" muted autoplay loop></audio>
-<audio id="layer7" class="music" src="music%20layers/layer7.mp3" muted autoplay loop></audio> -->
-<audio id="fx1" class="clickFx" src="music%20layers/scratch.mp3"></audio>
-<audio id="fx2" class="loadFx" src="music%20layers/record-scratch-1.wav"></audio>
+    <audio id="audio" class="music" src="music%20layers/audio_menu.wav" autoplay loop></audio>
+    <!-- <audio id="layer1" class="music" src="music%20layers/layer1.mp3" muted autoplay loop></audio>
+    <audio id="layer2" class="music" src="music%20layers/layer2.mp3" muted autoplay loop></audio>
+    <audio id="layer3" class="music" src="music%20layers/layer3.mp3" muted autoplay loop></audio>
+    <audio id="layer4" class="music" src="music%20layers/layer4.mp3" muted autoplay loop></audio>
+    <audio id="layer5" class="music" src="music%20layers/layer5.mp3" muted autoplay loop></audio>
+    <audio id="layer6" class="music" src="music%20layers/layer6.mp3" muted autoplay loop></audio>
+    <audio id="layer7" class="music" src="music%20layers/layer7.mp3" muted autoplay loop></audio> -->
+    <audio id="fx1" class="clickFx" src="music%20layers/scratch.mp3"></audio>
+    <audio id="fx2" class="loadFx" src="music%20layers/record-scratch-1.wav"></audio>
 
-<div id="main">
-
-    <div class="gameboard"></div>
-    <div class="winner"><span class="message">You're a star!</span><br><br><div class="reset" onclick="resetGame()">play again</div></div>
-    <div class="trivia">answer trivia to go</div>
-    <div class="question_board">
-        <div class="questions"></div>
-        <div class="button_options">
-            <div id="button_option1" class="button_option"></div>
-            <div id="button_option2" class="button_option"></div>
-            <div id="button_option3" class="button_option"></div>
-            <div id="button_option4" class="button_option"></div>
+    <div id="main">
+        <div class="gameboard">
+        </div>
+        <div class="winner">
+            <span class="message">
+                You're a star!
+            </span><br><br>
+            <div class="reset" onclick="resetGame()">
+                play again
+            </div>
         </div>
     </div>
-    <div class="cover_box"></div>
-</div>
-<canvas id='canvas' width="1000" height="500"></canvas>
-</div>
+    <canvas id='canvas' width="1000" height="500"></canvas>
 </div>
 </body>
 </html>

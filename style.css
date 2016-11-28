@@ -18,7 +18,6 @@ body {
     background-size: cover;
     z-index: -2;
     transition: rotate(1080deg);
-    transition-duration: 5000ms;
 }
 
 #side {
@@ -28,7 +27,6 @@ body {
     background-image: url(images/background3.jpg);
     background-size: contain;
     display: inline-block;
-
 }
 
 .sidebar_style {
@@ -128,21 +126,22 @@ body {
     background-image: url(images/background1.gif);
     background-size: cover;
     z-index: 10;
+    overflow: hidden;
 }
 
 .button {
     line-height: 150px;
     text-align: center;
     font-weight: bolder;
-    bottom: 10%;
-    right: 5%;
-    height: 400px;
-    width: 395px;
+    bottom: 12%;
+    right: 7%;
+    height: 380px;
+    width: 380px;
     position: absolute;
-    font-size: 33px;
+    font-size: 30px;
     color: white;
     font-style: italic;
-    border: 100px rgb(20, 20, 20) solid;
+    border: 85px rgb(20, 20, 20) solid;
     border-radius: 100%;
     background-image: url(images/buttonBackground.jpg);
     background-size: contain;
@@ -339,119 +338,6 @@ h1 {
     cursor: pointer;
 }
 
-.trivia {
-    font-size: 20px;
-    color: white;
-    font-weight: bolder;
-    font-style: italic;
-    top: 5%;
-    left: 12%;
-    position: absolute;
-    text-align: center;
-    height: 10vh;
-    width: 35vw;
-    border-radius: 25px;
-    z-index: 6;
-}
-
-.question_board {
-    font-size: 20px;
-    color: white;
-    font-weight: bolder;
-    font-style: italic;
-    top: 10%;
-    left: 18%;
-    position: absolute;
-    height: 400px;
-    width: 400px;
-    border-radius: 25px;
-    z-index: 6;
-}
-
-.questions {
-    border: 3px solid white;
-    padding: 10px;
-    font-size: 20px;
-    position: absolute;
-    height: 60%;
-    width: 100%;
-    background-color: rgba(50, 50, 50, 0.5);
-    background-size: cover;
-    border-radius: 25px 25px 0px 0px;
-}
-
-.button_options {
-    border: 3px solid white;
-    border-top: none;
-    padding: 10px;
-    height: 40%;
-    width: 100%;
-    background-color: rgba(50, 50, 50, 0.8);
-    top: 60%;
-    position: absolute;
-    border-radius: 0px 0px 25px 25px;
-}
-
-.button_options:hover {
-    cursor: pointer;
-}
-
-#button_option1 {
-    height: 40%;
-    width: 40%;
-
-    position: absolute;
-}
-
-#button_option2 {
-    height: 40%;
-    width: 40%;
-    left: 50%;
-    position: absolute;
-}
-
-#button_option3 {
-    height: 40%;
-    width: 40%;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    border-radius: 0px 0px 25px 0px;
-}
-
-#button_option4 {
-    height: 40%;
-    width: 40%;
-    top: 50%;
-    position: absolute;
-    border-radius: 0px 0px 0px 25px;
-}
-.button_option:hover{
-    color:red;
-}
-
-.correct_answer {
-    font-size: 20px;
-    color: white;
-    font-weight: bolder;
-    font-style: italic;
-    top: 5%;
-    left: 18%;
-    position: absolute;
-    height: 45vh;
-    width: 35vw;
-    border-radius: 25px;
-    z-index: 6;
-    background-color: pink;
-}
-
-.cover_box {
-    height: 100%;
-    width: 85%;
-    position: absolute;
-    /*background-image: url("images/background2.jpg");*/
-    /*background-size: cover;*/
-    background-color: black;
-    opacity:0.8;
-    z-index: 4;
+.hidden{
+    display: none;
 }

@@ -4,6 +4,22 @@
 
 $(document).ready(function () {
     initializeAudioVisualizer(document.getElementById('audio'));
+
+    $(".gameboard").html("");
+    $("#toWin").html("");
+    gameSize = 3;
+    totalSpots = gameSize * gameSize;
+    $('.board_size').removeClass('buttonClicked');
+    $('#three').addClass('buttonClicked');
+    for (var i = 0; i < gameSize; i++) {
+        gameState[i] = [];
+        for (var j = 0; j < gameSize; j++) {
+            gameState[i][j] = ' ';
+        }
+    }
+    loadSquares();
+        randomWin = 3;
+    $('#toWin').append(randomWin + " in a row win.")
 });
 
 $(document).ready(closeButton);
@@ -11,18 +27,10 @@ var whos_turn = 'x';
 
 var layers = 0;
 var increment = true;
-var answer = null;
-var wrong_answer = null;
-var gameSize = null;
+var gameSize = 3;
 var gameState = [];
-var question = null;
-var ans1 = null;
-var ans2 = null;
-var ans3 = null;
-var ans4 = null;
 var spotsFilled = 0;
 var totalSpots;
-
 var player1_name = null;
 var player2_name = null;
 var randomWin = null;
@@ -50,7 +58,7 @@ function initializeAudioVisualizer(audio) {
     // we're ready to receive some data!
     var canvas = document.getElementById('canvas'),
         cwidth = canvas.width,
-        cheight = canvas.height - 2,
+        cheight = (canvas.height - 2),
         meterWidth = 10, //width of the meters in the spectrum
         gap = 2, //gap between meters
         capHeight = 2,
@@ -97,6 +105,11 @@ function resetGame() {
     location.reload();
 }
 
+function stop_animation(){
+    $('.playerO').css('animation','none');
+    $('.playerX').css('animation','none');
+}
+
 function audioClick() {
     $('#fx1').get(0).play();
 }
@@ -105,10 +118,23 @@ function loadAudioFx() {
 }
 
 function closeButton() {
-    $("#DJ1").css("box-shadow", "0 0 30px 5px white");
+    $("#DJ1").addClass('flashingDJ');
     $(".button").click(function () {
-        player1_name = "DJ " + $("#player1_name").val();
-        player2_name = "DJ " + $("#player2_name").val();
+        var player1_name_val = $("#player1_name").val();
+        var player2_name_val = $("#player2_name").val();
+
+        if (player1_name_val){
+            player1_name = "DJ " + player1_name_val;
+        }
+        else{
+            player1_name = 'DJ "X"treme';
+        }
+        if (player2_name_val){
+            player2_name = "DJ " + player2_name_val;;
+        }
+        else{
+            player2_name = 'DJ "O"mega';
+        }
         loadAudioFx();
         $("#DJ1").append(player1_name);
         $(".Player_turn").text(player1_name + "'s turn!");
@@ -117,6 +143,8 @@ function closeButton() {
         $('.front_page').animate({width: 'toggle'});
         $('.gamesquare').slideToggle(500);
     });
+
+
 
     $(".board_size").click(function () {
         audioClick();
@@ -138,12 +166,12 @@ function closeButton() {
             randomWin = 3;
         }
         else if (gameSize == 9) {
-            randomWin = Math.floor(Math.random() * 6) + 3;
+            randomWin = 4;
         }
         else {
-            randomWin = Math.floor(Math.random() * 17) + 3;
+            randomWin = 5;
         }
-        $('#toWin').append(randomWin + " need to win.")
+        $('#toWin').append(randomWin + " in a row to win.")
     });
 }
 
@@ -173,7 +201,7 @@ function loadSquares() {
 
 function loadclickhandlers() {
     $('.gamesquare').on('click', function () {
-        // $(this).off('click');
+        $(this).addClass('clicked');
         position_tracker.call(this);
         music_layering.call(this);
     });
@@ -203,14 +231,8 @@ function music_layering() {
     //$("#audio")[0].currentTime = currentTime;
 }
 
-var answered = false;
-
 function position_tracker() {
-    console.log('clicked');
-    if (!answered) {
-        console.log('nope');
-        return;
-    }
+
     audioClick();
     var row = $(this).data('row');
     var column = $(this).data('column');
@@ -218,28 +240,28 @@ function position_tracker() {
 
     if (whos_turn == 'x') {
 
-        $("#DJ1").css("box-shadow", "0 0 0 black");
+        $("#DJ1").removeClass('flashingDJ');;
         gameState[row][column] = 'x';
         var player1 = $('<div>').addClass('playerX');
         $(this).append(player1);
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'o';
         $(".Player_turn").text(player2_name + "'s turn!");
-        $("#DJ2").css("box-shadow", "0 0 30px 5px white");
+        $("#DJ2").addClass('flashingDJ');
         $('.cover_box').fadeIn(2000);
         if (!checkWin(row, column, randomWin, 'x')) {
         }
     }
     else if (whos_turn == 'o') {
 
-        $("#DJ2").css("box-shadow", "0 0 0 black");
+        $("#DJ2").removeClass('flashingDJ');
         gameState[row][column] = 'o';
         var player2 = $('<div>').addClass('playerO');
         $(this).append(player2);
         $(this).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
         whos_turn = 'x';
         $(".Player_turn").text(player1_name + "'s turn!");
-        $("#DJ1").css("box-shadow", "0 0 30px 5px white");
+        $("#DJ1").addClass('flashingDJ');
         $('.cover_box').fadeIn(2000);
         if (!checkWin(row, column, randomWin, 'o')) {
         }
@@ -252,19 +274,21 @@ function checkWin(i, j, numberOfSpots, XorO) {
     if (checkVertical(i, j, numberOfSpots, XorO) || checkUpperDiagonal(i, j, numberOfSpots, XorO) || checkHorizontal(i, j, numberOfSpots, XorO) || checkLowerDiagonal(i, j, numberOfSpots, XorO)) {
         $('.message').text("You're a star!");
         $('.winner').slideToggle();
+        $('.board_blocker').css('display','inherit ');
         setTimeout(function () {
             $('#audio').prop('muted', true);
         }, 1000);
-        loadAudioFx();
+        stop_animation()
         return true;
     }
     if (spotsFilled === totalSpots) {
         $('.message').text("TIE game...");
         $('.winner').slideToggle();
+        $('.board_blocker').css('display','inherit ');
         setTimeout(function () {
             $('#audio').prop('muted', true);
         }, 1000);
-        loadAudioFx();
+        stop_animation();
     }
     return false;
 }

@@ -2,9 +2,9 @@
  * Created by OF on 9/14/16.
  */
 
-$(document).ready(function () {
-    initializeAudioVisualizer(document.getElementById('audio'));
-});
+// $(document).ready(function () {
+//     initializeAudioVisualizer(document.getElementById('audio'));
+// });
 
 $(document).ready(closeButton);
 var whos_turn = 'x';
@@ -115,9 +115,17 @@ function closeButton() {
         $("#DJ1").append(player1_name);
         $(".Player_turn").text(player1_name + "'s turn!");
         $("#DJ2").append(player2_name);
+        $('#main').show();
         $(".front_page").slideToggle(1500);
         $('.gamesquare').slideToggle(2000);
         $('.cover_box').fadeIn(2000);
+        $('.show-answer').click(function() {
+            $('.answer').fadeIn('fast');
+        });
+        $('.next-question').click(function() {
+            $(".question").text("");
+            ajaX();
+        })
     });
 
     $(".board_size").click(function () {
@@ -153,14 +161,14 @@ function closeButton() {
         $('.button_options').css('pointer-events', 'none');
         if (answer2 == answer) {
            $(".cover_box").fadeOut();
-            $(".questions").text("");
+            $(".question").text("");
             // $(".button_options").text("");
-            var correct_answer = $('.questions').text("GOOD JOB, make a move");
+            var correct_answer = $('.question').text("GOOD JOB, make a move");
             $('question_board').append(correct_answer);
             answered = true;
         } else {
-            $(".questions").text("");
-            var incorrect_answer = $('.questions').text("Incorrect, You'll have to wait a turn");
+            $(".question").text("");
+            var incorrect_answer = $('.question').text("Incorrect, You'll have to wait a turn");
             console.log("THE TURN  IS: ", incorrect_answer);
             if (whos_turn == 'x') {
 
@@ -174,18 +182,19 @@ function closeButton() {
                 $("#DJ2").css("box-shadow", "0 0 0 black");
                 $("#DJ1").css("box-shadow", "0 0 30px 5px white");
             }
-            $('.questions').append(incorrect_answer);
-            var $nextQuestionButton = $('<button>Next Question</button>');
-            $nextQuestionButton.on('click', function () {
-                $(".questions").text("");
-                ajaX();
-
-            });
+            $('.question').append(incorrect_answer);
+            $('.show-answer').hide();
+            $('.answer').hide();
+            $('.next-question').show();
             $('.button_option').text('');
-            $('.questions').append($nextQuestionButton);
+            $('.question').append()
+            $('.question').append($nextQuestionButton);
         }
     });
     $('.button').click(ajaX);
+    $('.button').click(function() {
+        initializeAudioVisualizer(document.getElementById('audio'));
+    });
 }
 
 function loadSquares() {
@@ -408,10 +417,10 @@ function checkLowerDiagonal(i, j, numberOfSpots, XorO) {
 
 
 function ajaX() {
-    console.log("ajax runing");
     $.ajax({
         // url: 'http://www.opentdb.com/api.php?amount=1&category=9&difficulty=easy&type=multiple',
-        url: 'http://brianphan88.com/questions/multiple_api.php',
+        // url: 'http://brianphan88.com/questions/multiple_api.php',
+        url: 'trivia.php',
         // dataType: 'jsonp',
         // method: 'get',
         // crossDomain: true,
@@ -420,21 +429,34 @@ function ajaX() {
             answered = false;
             // console.log(JSON.parse(response));
             response = JSON.parse(response.substring(0, response.length - 1));
-            var i = Math.floor(Math.random() * 40);
-            question = response.results[i].question;
-            // console.log(question);
-            $(".questions").html("");
-            $(".questions").append(question);
-            wrong_answer = response.results[i].incorrect_answers;
-            answer = response.results[i].correct_answer;
+            console.log(response);
+            question = response.results[0].question;
+            $('.next-question').hide();
+            $('.show-answer').show();
+            $(".question").html("");
+            $(".question").append(question);
+            // $('.questions').append('<br><br><button class="show-answer">Show Answer</button>');
+            wrong_answer = response.results[0].incorrect_answers;
+            answer = response.results[0].correct_answer;
+            $('.answer').hide().html(answer).text();
             $(".button_option").html("");
             $('.button_options').css('pointer-events', 'auto');
-            ans1 = $("#button_option1").text(response.results[i].incorrect_answers[0]);
-            ans2 = $("#button_option2").text(response.results[i].incorrect_answers[1]);
-            ans3 = $("#button_option3").text(response.results[i].incorrect_answers[2]);
-            ans4 = $("#button_option4").text(response.results[i].correct_answer);
-            // console.log(wrong_answer);
-            // console.log(answer);
+            var rand = Math.ceil(Math.random() * 4);
+            $('#button_option' + rand).html(answer).text();
+            console.log(rand);
+            for (var i=1,j=0; i<=4; i++) {
+                if (i !== rand) {
+                    $('#button_option' + i).html(wrong_answer[j]).text();
+                    console.log(j);
+                    j++;
+                    
+                }
+            }
+
+            // ans1 = $("#button_option1").html(response.results[0].incorrect_answers[0]).text();
+            // ans2 = $("#button_option2").html(response.results[0].incorrect_answers[1]).text();
+            // ans3 = $("#button_option3").html(response.results[0].incorrect_answers[2]).text();
+            // ans4 = $("#button_option4").html(response.results[0].correct_answer).text();
         }
     })
     

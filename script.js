@@ -109,6 +109,7 @@ function closeButton() {
     $(".cover_box").hide();
     $("#DJ1").css("box-shadow", "0 0 30px 5px white");
     $(".button").click(function () {
+        ajaX();
         player1_name = "DJ " + $("#player1_name").val();
         player2_name = "DJ " + $("#player2_name").val();
         loadAudioFx();
@@ -125,7 +126,8 @@ function closeButton() {
         $('.next-question').click(function() {
             $(".question").text("");
             ajaX();
-        })
+        });
+        initializeAudioVisualizer(document.getElementById('audio'));
     });
 
     $(".board_size").click(function () {
@@ -191,10 +193,11 @@ function closeButton() {
             $('.question').append($nextQuestionButton);
         }
     });
-    $('.button').click(ajaX);
-    $('.button').click(function() {
-        initializeAudioVisualizer(document.getElementById('audio'));
-    });
+    $('#three').trigger('click');
+    // $('.button').click(ajaX);
+    // $('.button').click(function() {
+    //     initializeAudioVisualizer(document.getElementById('audio'));
+    // });
 }
 
 function loadSquares() {
